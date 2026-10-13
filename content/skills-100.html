@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a>
+  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: Skills</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -300,12 +300,12 @@ ul.task-list li input[type="checkbox"] {
 <li>Ask me before deleting the branch</li>
 </ol>
 <p>Note: this assumes I’m working on my own. For collaborative work, I’ll open the PR and assign a reviewer instead of merging.</p>
-<p><strong>“Get ready for clear”</strong> means:</p>
+<p><strong>“I am about to clear”</strong> or <strong>“Get ready to clear”</strong> means:</p>
 <ol type="1">
 <li>Close any loose ends (pending edits, uncommitted changes). Commit on the task’s branch, never on <code>main</code>; if we are on <code>main</code>, ask me what to do</li>
 <li>Review memories for outdated information and update them</li>
-<li>Update the handoff note in <code>notes/</code></li>
-<li>Keep the handoff concise — move detailed info to separate files in <code>notes/</code> if it’s getting long</li>
+<li>Update the handoff note, <code>notes/handoff.md</code></li>
+<li>Keep the handoff concise — move detailed info to separate topic files in <code>notes/</code> if it’s getting long</li>
 <li>Ask me what my next task will be when I return and put that in the handoff</li>
 </ol>
 <p><strong>“Initialize this repo”</strong> means:</p>
@@ -325,6 +325,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>The agent will create the file for you. Review it, tweak anything you want, and you’re done.</p>
+<p>The GitHub steps (issues, pushing, pull requests) need the GitHub access you set up in <a href="../content/setup.html#github-access">Setup</a>. With <strong>Token for one repository</strong> they work only in that repository. With <strong>No access</strong>, the agent can still make branches and commits on the hub, but the issue, push and PR steps will fail; tell it to skip them.</p>
 <p>Over time, add more shortcuts as you develop habits. The file grows with you.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -336,7 +337,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When you say “Task is done”, the agent opens the PR and then stops to ask before merging and before deleting the branch. That is on purpose: you decide when work goes into <code>main</code>. With Antigravity, the <a href="../content/setup.html#guardrails">guardrails</a> enforce this even if the instructions are missing, and Antigravity may show its own approval prompt after you say yes. If you start working without “I am starting a new task”, the agent is on <code>main</code> and cannot push there. Ask it to move the work to a new branch.</p>
+<p>When you say “Task is done”, the agent opens the PR and then stops to ask before merging and before deleting the branch. That is on purpose: you decide when work goes into <code>main</code>. With Antigravity, the <a href="../content/setup.html#guardrails">guardrails</a> enforce this even if the instructions are missing, and Antigravity may show its own approval prompt after you say yes.</p>
+<p>If you start working without “I am starting a new task”, the agent is on <code>main</code>. Antigravity’s guard will not let it push there; Claude Code’s auto mode will, unless your instructions stop it. Either way, ask the agent to move the work to a new branch.</p>
 </div>
 </div>
 </section>

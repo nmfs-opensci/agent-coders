@@ -197,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a>
+  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: Skills</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,17 +332,18 @@ ul.task-list li input[type="checkbox"] {
 <section id="plan-first-build-small" class="level2">
 <h2 class="anchored" data-anchor-id="plan-first-build-small">Plan first, build small</h2>
 <p>Two rules that save time and money:</p>
-<p><strong>Plan before you build.</strong> Start by asking the agent to explore and make a plan. Save the plan to <code>notes/</code>. Then clear and start a fresh session to execute. Exploration context clutters implementation.</p>
+<p><strong>Plan before you build.</strong> Start by asking the agent to explore and make a plan. Save the plan to <code>notes/</code>. Then clear and start a fresh session to execute. Exploration context clutters implementation. In Claude Code, <strong>plan mode</strong> (press <strong>Shift+Tab</strong> until it shows below the prompt box) keeps the agent from changing files while you plan.</p>
 <p><strong>Build small before building big.</strong> One chapter, one function, one section at a time. Review it, then continue. Small pieces are easier to check and cheaper to redo.</p>
 </section>
 <section id="close-the-loop" class="level2">
 <h2 class="anchored" data-anchor-id="close-the-loop">Close the loop</h2>
 <p>When you’re done with a task — or switching to a different one — or the conversation is just getting long — <strong>close it</strong>:</p>
 <ol type="1">
-<li>Tell the agent: <em>“I’m about to clear. Write a handoff note to <code>notes/</code> with what we did and what’s next.”</em></li>
-<li>Run <code>/clear</code></li>
+<li>Tell the agent: <em>“I am about to clear. Update the handoff note in <code>notes/handoff.md</code> with what we did and what’s next.”</em></li>
+<li>Run <code>/clear</code> (in Claude Code or Antigravity)</li>
 <li>Start the next task fresh</li>
 </ol>
+<p>In <a href="../content/skills-100.html">Skills 100</a> you teach the agent that “I am about to clear” means all of step 1, so you can stop spelling it out.</p>
 <p>The handoff note is a short file — what was done, what’s next, any decisions made. Not a transcript, not a code dump. A sticky note for the next session.</p>
 <p><strong>You don’t have to finish to close.</strong> “Got halfway through X, next step is Y” is a perfectly good handoff. The next session picks it up.</p>
 </section>
@@ -372,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Most tools can resume the previous session. This works for short interruptions — you stepped away for coffee and want to continue the same task.</p>
 <p>But for picking up work after a longer gap, or when someone else is taking over, start fresh:</p>
 <blockquote class="blockquote">
-<p>Read the notes in <code>notes/</code> and continue where we left off.</p>
+<p>Read <code>notes/handoff.md</code> and continue where we left off.</p>
 </blockquote>
 <p>This gives the agent exactly the context it needs and nothing it doesn’t. And anyone on the team can pick it up — not just the person who started it.</p>
 

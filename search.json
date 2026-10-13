@@ -14,7 +14,7 @@
     "href": "index.html#what-youll-learn",
     "title": "Agent Coders Clinic",
     "section": "What you’ll learn",
-    "text": "What you’ll learn\nBy the end of this clinic, you will:\n\nUnderstand what an agentic coding harness is and how it differs from chatbots or autocomplete\nGet Claude Code running on the JupyterHub through a shared workshop gateway — no AI account or subscription needed\nPractice a clear–handoff–notes workflow that keeps your work organized across sessions\nTry a group activity where an agent analyzes a real GitHub repository\nLearn how to write SKILLS.md files that teach an agent reusable tasks",
+    "text": "What you’ll learn\nBy the end of this clinic, you will:\n\nUnderstand what an agentic coding harness is and how it differs from chatbots or autocomplete\nGet Claude Code or Antigravity running on the JupyterHub — no AI account or subscription of your own needed\nPractice a clear–handoff–notes workflow that keeps your work organized across sessions\nUse an agent to plan and edit a real Quarto book, with a plan and handoff notes between sessions\nTeach the agent your workflow (task → branch → pull request) and write skills for tasks you repeat",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#agenda",
     "title": "Agent Coders Clinic",
     "section": "Agenda",
-    "text": "Agenda\n\n\n\n\n\n\n\nTime\nTopic\n\n\n\n\nFirst half\nSetup, intro to agentic coding, core workflow (clear / handoff / notes)\n\n\nSecond half\nGroup activity (repo reproducibility analysis), SKILLS.md",
+    "text": "Agenda\n\n\n\n\n\n\n\nTime\nTopic\n\n\n\n\nFirst half\nSetup, intro to agentic coding, core workflow (clear / handoff / notes)\n\n\nSecond half\nActivity: edit a Quarto book with an agent; agent skills",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome</span>"
     ]
@@ -44,7 +44,7 @@
     "href": "index.html#ready",
     "title": "Agent Coders Clinic",
     "section": "Ready?",
-    "text": "Ready?\nStart with Setup: log in to the hub, get your workshop key, and start Claude Code in your own copy of a practice repository.",
+    "text": "Ready?\nStart with Setup: log in to the hub, run the setup script for Claude Code or Antigravity, and choose how much of your GitHub the agent can reach.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome</span>"
     ]
@@ -87,7 +87,18 @@
     "href": "content/setup.html#github-access",
     "title": "Setup",
     "section": "GitHub Access",
-    "text": "GitHub Access\nChoose how much of your GitHub the agent can reach:\n\nNo access If you are not having the agent push to GitHub, then you don’t have to login to GitHub at all.\nToken for one repository: the agent can only push to your practice repository.\nFull access: you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach—except NMFS GitHub Enterprise (which is SSO protected).\n\n\nToken for one repository\n\n\n\nMake a token for that one repository\nGo to https://github.com/settings/personal-access-tokens/new and fill in:\n\nToken name: JupyterHub Claude Code training\nExpiration: a few days after the clinic\nResource owner: your personal GitHub username\nRepository access: Only select repositories, then pick whatever repo you want to give it access to.\nPermissions → Repository permissions:\n\nContents: Read and write\nPull requests: Read and write\nIssues: Read and write\n\n\nLeave every other permission at No access. (Metadata: Read-only is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in Skills 100.\nClick Generate token and copy it. GitHub shows it only once.\n\n\nLog in to GitHub with the token\nOpen a terminal (File → New → Terminal) and run:\ngh auth login\nAnswer the prompts:\n\nWhere do you use GitHub? GitHub.com\nPreferred protocol for Git operations? HTTPS\nAuthenticate Git with your GitHub credentials? Yes\nHow would you like to authenticate? Paste an authentication token\n\nPaste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. gh saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.\nNote, Logging for full access (the Full access tab) replaces the token with full access.\n\n\n\n\n\nFull access\n\n\n\n\n\n\nWarning\n\n\n\nWith this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).\n\n\n\nLog in\nIn a terminal, run:\ngh auth login\nAnswer the prompts:\n\nWhere do you use GitHub? GitHub.com\nPreferred protocol for Git operations? HTTPS\nAuthenticate Git with your GitHub credentials? Yes\nHow would you like to authenticate? Login with a web browser\n\nIt prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.\n::: ## Good to know\n\nClaude CodeAntigravity\n\n\n\nClaude Code budget: In a terminal,claude-agent-coders --budget shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.\nSwitch models: In Claude, use /model, for example /model claude-opus-4-6 for a hard problem. The default is Claude Sonnet 4.6; see Models & Budget.\nFull path: In a termnal, if claude-agent-coders is not found, use ~/shared/workshop/claude-agent-coders.\nYour settings are preserved: claude-agent-coders preserves your personal configurations.\n\n\n\n\nAlways use the team launcher: Start Antigravity in a terminal with agy-agent-coders, not plain agy. Plain agy asks for permission before every single shell command out of the box; agy-agent-coders adds everyday commands to your settings and guards against destructive actions.\nFull path: If agy-agent-coders is not found, use ~/shared/agent-coders/agy-agent-coders.\nDo not use agy --sandbox on the hub: The hub’s container security does not support container sandboxing and JupyterHub is already a sandbox.\nYour settings are preserved: agy-agent-coders preserves your personal settings and existing configurations.",
+    "text": "GitHub Access\nChoose how much of your GitHub the agent can reach:\n\nNo access If you are not having the agent push to GitHub, then you don’t have to login to GitHub at all.\nToken for one repository: the agent can only push to your practice repository.\nFull access: you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach—except NMFS GitHub Enterprise (which is SSO protected).\n\n\nToken for one repositoryFull access\n\n\n\nMake a token for that one repository\nGo to https://github.com/settings/personal-access-tokens/new and fill in:\n\nToken name: JupyterHub Claude Code training\nExpiration: a few days after the clinic\nResource owner: your personal GitHub username\nRepository access: Only select repositories, then pick whatever repo you want to give it access to.\nPermissions → Repository permissions:\n\nContents: Read and write\nPull requests: Read and write\nIssues: Read and write\n\n\nLeave every other permission at No access. (Metadata: Read-only is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in Skills 100.\nClick Generate token and copy it. GitHub shows it only once.\n\n\nLog in to GitHub with the token\nOpen a terminal (File → New → Terminal) and run:\ngh auth login\nAnswer the prompts:\n\nWhere do you use GitHub? GitHub.com\nPreferred protocol for Git operations? HTTPS\nAuthenticate Git with your GitHub credentials? Yes\nHow would you like to authenticate? Paste an authentication token\n\nPaste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. gh saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.\nNote, logging in for full access (the Full access tab) replaces the token with full access.\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nWith this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).\n\n\n\nLog in\nIn a terminal, run:\ngh auth login\nAnswer the prompts:\n\nWhere do you use GitHub? GitHub.com\nPreferred protocol for Git operations? HTTPS\nAuthenticate Git with your GitHub credentials? Yes\nHow would you like to authenticate? Login with a web browser\n\nIt prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setup</span>"
+    ]
+  },
+  {
+    "objectID": "content/setup.html#good-to-know",
+    "href": "content/setup.html#good-to-know",
+    "title": "Setup",
+    "section": "Good to know",
+    "text": "Good to know\n\nClaude CodeAntigravity\n\n\n\nClaude Code budget: In a terminal, claude-agent-coders --budget shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.\nSwitch models: In Claude, use /model, for example /model claude-opus-4-6 for a hard problem. The default is Claude Sonnet 4.6; see Models & Budget.\nFull path: In a terminal, if claude-agent-coders is not found, use ~/shared/workshop/claude-agent-coders.\nYour settings are preserved: claude-agent-coders preserves your personal configurations.\n\n\n\n\nAlways use the team launcher: Start Antigravity in a terminal with agy-agent-coders, not plain agy. Plain agy asks for permission before every single shell command out of the box; agy-agent-coders adds everyday commands to your settings and guards against destructive actions.\nFull path: If agy-agent-coders is not found, use ~/shared/agent-coders/agy-agent-coders.\nDo not use agy --sandbox on the hub: The hub’s container security does not support container sandboxing and JupyterHub is already a sandbox.\nYour settings are preserved: agy-agent-coders preserves your personal settings and existing configurations.",
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setup</span>"
@@ -98,7 +109,7 @@
     "href": "content/setup.html#guardrails",
     "title": "Setup",
     "section": "Guardrails",
-    "text": "Guardrails\nOnce you connect GitHub in Activity 1, the agent can do on GitHub whatever your login allows. The two launchers protect you in different ways.\n\nClaude CodeAntigravity\n\n\nclaude-agent-coders adds no guard of its own. Claude Code’s permission mode protects you. The current mode is shown below the prompt box, and Shift+Tab switches between modes.\n\nAuto mode: before each action runs, a second model checks it. Routine work runs without asking. Risky actions are blocked, such as force pushes, git reset --hard, deleting files that were already there, downloading and running scripts, and merging a pull request you have not approved. Auto mode does allow pushing to main, so start each task on a branch.\nManual mode: Claude Code asks before every command and every file edit. Read each one before you approve it. Answering “don’t ask again” for a command means it will not ask about that command again.\n\nclaude-agent-coders starts in auto mode, on the default model, Claude Sonnet 4.6. Auto mode needs a Sonnet or Opus model; it is not available with Claude Haiku 4.5. If the mode below the prompt box is not auto, switch back with /model claude-sonnet-4-6 and press Shift+Tab until it shows auto.\n\n\nagy-agent-coders installs a guard that checks every shell command the agent runs. It watches only the agent. You can still run any of these commands yourself in a terminal.\nAlways blocked:\n\ngit reset --hard, git clean -f, and force pushes (--force-with-lease is allowed)\nrm -r outside the folder you started the agent in\nPushing to main (or master). The agent works on a branch and opens a pull request instead.\nDeleting a GitHub repository. You do that yourself.\n\nStops and asks you first:\n\nMerging a pull request\nDeleting a branch\nClosing an issue\nOpening a pull request in a repository you do not own\n\nFor these, the agent should tell you what it is about to do and ask. Once you say yes, it runs the command again. For merging and closing issues, Antigravity then shows its own approval prompt too.\nThese match the workflow in this clinic: one branch per task, a pull request, and you decide when it is merged.",
+    "text": "Guardrails\nOnce you connect GitHub (see GitHub Access), the agent can do on GitHub whatever your login allows. The two launchers protect you in different ways.\n\nClaude CodeAntigravity\n\n\nclaude-agent-coders adds no guard of its own. Claude Code’s permission mode protects you. The current mode is shown below the prompt box, and Shift+Tab switches between modes.\n\nAuto mode: before each action runs, a second model checks it. Routine work runs without asking. Risky actions are blocked, such as force pushes, git reset --hard, deleting files that were already there, downloading and running scripts, and merging a pull request you have not approved. Auto mode does allow pushing to main, so start each task on a branch.\nManual mode: Claude Code asks before every command and every file edit. Read each one before you approve it. Answering “don’t ask again” for a command means it will not ask about that command again.\n\nclaude-agent-coders starts in auto mode, on the default model, Claude Sonnet 4.6. Auto mode needs a Sonnet or Opus model; it is not available with Claude Haiku 4.5. If the mode below the prompt box is not auto, switch back with /model claude-sonnet-4-6 and press Shift+Tab until it shows auto.\n\n\nagy-agent-coders installs a guard that checks every shell command the agent runs. It watches only the agent. You can still run any of these commands yourself in a terminal.\nAlways blocked:\n\ngit reset --hard, git clean -f, and force pushes (--force-with-lease is allowed)\nrm -r outside the folder you started the agent in\nPushing to main (or master). The agent works on a branch and opens a pull request instead.\nDeleting a GitHub repository. You do that yourself.\n\nStops and asks you first:\n\nMerging a pull request\nDeleting a branch\nClosing an issue\nOpening a pull request in a repository you do not own\n\nFor these, the agent should tell you what it is about to do and ask. Once you say yes, it runs the command again. For merging and closing issues, Antigravity then shows its own approval prompt too.\nThese match the workflow in this clinic: one branch per task, a pull request, and you decide when it is merged.",
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setup</span>"
@@ -263,7 +274,7 @@
     "href": "content/how-to-work-with-an-agent.html#plan-first-build-small",
     "title": "How to Work with an Agent",
     "section": "Plan first, build small",
-    "text": "Plan first, build small\nTwo rules that save time and money:\nPlan before you build. Start by asking the agent to explore and make a plan. Save the plan to notes/. Then clear and start a fresh session to execute. Exploration context clutters implementation.\nBuild small before building big. One chapter, one function, one section at a time. Review it, then continue. Small pieces are easier to check and cheaper to redo.",
+    "text": "Plan first, build small\nTwo rules that save time and money:\nPlan before you build. Start by asking the agent to explore and make a plan. Save the plan to notes/. Then clear and start a fresh session to execute. Exploration context clutters implementation. In Claude Code, plan mode (press Shift+Tab until it shows below the prompt box) keeps the agent from changing files while you plan.\nBuild small before building big. One chapter, one function, one section at a time. Review it, then continue. Small pieces are easier to check and cheaper to redo.",
     "crumbs": [
       "What Is Agentic Coding?",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>How to Work with an Agent</span>"
@@ -274,7 +285,7 @@
     "href": "content/how-to-work-with-an-agent.html#close-the-loop",
     "title": "How to Work with an Agent",
     "section": "Close the loop",
-    "text": "Close the loop\nWhen you’re done with a task — or switching to a different one — or the conversation is just getting long — close it:\n\nTell the agent: “I’m about to clear. Write a handoff note to notes/ with what we did and what’s next.”\nRun /clear\nStart the next task fresh\n\nThe handoff note is a short file — what was done, what’s next, any decisions made. Not a transcript, not a code dump. A sticky note for the next session.\nYou don’t have to finish to close. “Got halfway through X, next step is Y” is a perfectly good handoff. The next session picks it up.",
+    "text": "Close the loop\nWhen you’re done with a task — or switching to a different one — or the conversation is just getting long — close it:\n\nTell the agent: “I am about to clear. Update the handoff note in notes/handoff.md with what we did and what’s next.”\nRun /clear (in Claude Code or Antigravity)\nStart the next task fresh\n\nIn Skills 100 you teach the agent that “I am about to clear” means all of step 1, so you can stop spelling it out.\nThe handoff note is a short file — what was done, what’s next, any decisions made. Not a transcript, not a code dump. A sticky note for the next session.\nYou don’t have to finish to close. “Got halfway through X, next step is Y” is a perfectly good handoff. The next session picks it up.",
     "crumbs": [
       "What Is Agentic Coding?",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>How to Work with an Agent</span>"
@@ -296,7 +307,7 @@
     "href": "content/how-to-work-with-an-agent.html#what-about-resume",
     "title": "How to Work with an Agent",
     "section": "What about /resume?",
-    "text": "What about /resume?\nMost tools can resume the previous session. This works for short interruptions — you stepped away for coffee and want to continue the same task.\nBut for picking up work after a longer gap, or when someone else is taking over, start fresh:\n\nRead the notes in notes/ and continue where we left off.\n\nThis gives the agent exactly the context it needs and nothing it doesn’t. And anyone on the team can pick it up — not just the person who started it.",
+    "text": "What about /resume?\nMost tools can resume the previous session. This works for short interruptions — you stepped away for coffee and want to continue the same task.\nBut for picking up work after a longer gap, or when someone else is taking over, start fresh:\n\nRead notes/handoff.md and continue where we left off.\n\nThis gives the agent exactly the context it needs and nothing it doesn’t. And anyone on the team can pick it up — not just the person who started it.",
     "crumbs": [
       "What Is Agentic Coding?",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>How to Work with an Agent</span>"
@@ -318,7 +329,7 @@
     "href": "content/activity-repo-analysis.html#before-you-start",
     "title": "Activity: Edit a Quarto Book with an Agent",
     "section": "",
-    "text": "Make a copy of the practice repository\nDo this on GitHub’s website.\n\nOpen the NOAA Quarto book template.\nClick Use this template → Create a new repository.\nOwner: your personal GitHub username, not an organization.\nRepository name: my-quarto-book, or any name you like. The steps below use my-quarto-book.\nChoose Public and click Create repository.\nMake sure to cope all branches (there is a checkbox).\n\n\n\nClone your repository into the JupyterHub.\nOpen a terminal in the JupyterHub and type this (replace YOUR-USERNAME):\ncd ~\ngit clone https://github.com/YOUR-USERNAME/my-quarto-book.git\nYou now have ~/my-quarto-book on the JupyterHub.",
+    "text": "Make a copy of the practice repository\nDo this on GitHub’s website.\n\nOpen the NOAA Quarto book template.\nClick Use this template → Create a new repository.\nOwner: your personal GitHub username, not an organization.\nRepository name: my-quarto-book, or any name you like. The steps below use my-quarto-book.\nChoose Public and click Create repository.\nMake sure to copy all branches (there is a checkbox).\n\n\n\nClone your repository into the JupyterHub.\nOpen a terminal in the JupyterHub and type this (replace YOUR-USERNAME):\ncd ~\ngit clone https://github.com/YOUR-USERNAME/my-quarto-book.git\nYou now have ~/my-quarto-book on the JupyterHub.",
     "crumbs": [
       "What Is Agentic Coding?",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Activity: Edit a Quarto Book with an Agent</span>"
@@ -329,7 +340,7 @@
     "href": "content/activity-repo-analysis.html#connect-to-github-so-you-can-push-changes",
     "title": "Activity: Edit a Quarto Book with an Agent",
     "section": "Connect to GitHub so you can push changes",
-    "text": "Connect to GitHub so you can push changes\nChoose how much of your GitHub the agent can reach:\n\nToken for one repository: the agent can only push to your practice repository.\nFull access: you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach—except NMFS GitHub Enterprise (which is SSO protected).\n\n\nToken for one repository\n\n\n\nMake a token for that one repository\nGo to https://github.com/settings/personal-access-tokens/new and fill in:\n\nToken name: JupyterHub Claude Code training\nExpiration: a few days after the clinic\nResource owner: your personal GitHub username\nRepository access: Only select repositories, then pick my-quarto-book\nPermissions → Repository permissions:\n\nContents: Read and write\nPull requests: Read and write\nIssues: Read and write\n\n\nLeave every other permission at No access. (Metadata: Read-only is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in Skills 100.\nClick Generate token and copy it. GitHub shows it only once.\n\n\nLog in to GitHub with the token\nOpen a terminal (File → New → Terminal) and run:\ngh auth login\nAnswer the prompts:\n\nWhere do you use GitHub? GitHub.com\nPreferred protocol for Git operations? HTTPS\nAuthenticate Git with your GitHub credentials? Yes\nHow would you like to authenticate? Paste an authentication token\n\nPaste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. gh saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.\nNote, Logging for full access (the Full access tab) replaces the token with full access.\n\n\n\n\n\nFull access\n\n\n\n\n\n\nWarning\n\n\n\nWith this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).\n\n\n\nLog in\nIn a terminal, run:\ngh auth login\nAnswer the prompts:\n\nWhere do you use GitHub? GitHub.com\nPreferred protocol for Git operations? HTTPS\nAuthenticate Git with your GitHub credentials? Yes\nHow would you like to authenticate? Login with a web browser\n\nIt prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.\n:::",
+    "text": "Connect to GitHub so you can push changes\nYou chose how the agent reaches GitHub in Setup.\n\nToken for one repository: your token must include my-quarto-book. If you made the token before this repository existed, open https://github.com/settings/personal-access-tokens, click your token, and add my-quarto-book under Repository access. Or make a new token for it and log in again with gh auth login.\nFull access: nothing more to do.\nNo access: you can still do this activity. The agent works and commits on the hub; you just cannot push to GitHub.",
     "crumbs": [
       "What Is Agentic Coding?",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Activity: Edit a Quarto Book with an Agent</span>"
@@ -340,7 +351,7 @@
     "href": "content/activity-repo-analysis.html#start-your-agent-in-your-repository",
     "title": "Activity: Edit a Quarto Book with an Agent",
     "section": "Start your agent in your repository",
-    "text": "Start your agent in your repository\n\n\n\n\n\n\nImportant\n\n\n\nAlways start your agent from inside your project folder (cd ~/my-quarto-book first). The folder you start it in is what your agent treats as the project boundary.\n\n\nOpen a new terminal and start your agent:\n\nClaude CodeAntigravity\n\n\ncd ~/my-quarto-book\nclaude-agent-coders\nThis time, say yes to trusting the folder: this is the repository you want the agent to work in.\n\n\ncd ~/my-quarto-book\nagy-agent-coders\n\n\n\n\nTry a first prompt\nType this:\n\nWhat is this repository? List the main files and what they do.\n\nIf the agent reads your files and answers, you are set up.\nWhat to expect while working:\n\nEveryday commands run automatically: everyday tasks—inspecting files (ls, cat, grep, etc.), creating directories (mkdir, touch), R, Quarto, Python, and read-only git/GitHub actions run without asking. It also automatically accepts edits to files inside your project repository.\nUnlisted commands ask for approval: Anything not on the team’s auto-approved list (copying, moving, or deleting files, pip, or running other software) will prompt for your confirmation before running. This is normal and expected.\nSafety guards: Destructive actions like git reset --hard, force pushes (git push --force), git clean -f, recursive deletions (rm -r) outside your project directory, pushing to main, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first.",
+    "text": "Start your agent in your repository\n\n\n\n\n\n\nImportant\n\n\n\nAlways start your agent from inside your project folder (cd ~/my-quarto-book first). The folder you start it in is what your agent treats as the project boundary.\n\n\nOpen a new terminal and start your agent:\n\nClaude CodeAntigravity\n\n\ncd ~/my-quarto-book\nclaude-agent-coders\nThis time, say yes to trusting the folder: this is the repository you want the agent to work in.\n\n\ncd ~/my-quarto-book\nagy-agent-coders\n\n\n\n\nTry a first prompt\nType this:\n\nWhat is this repository? List the main files and what they do.\n\nIf the agent reads your files and answers, you are set up.\nWhat to expect while working:\n\nClaude CodeAntigravity\n\n\nclaude-agent-coders starts in auto mode: routine work runs without asking, and a second model blocks risky actions. Auto mode does allow pushing to main, so keep your work on a branch. See Guardrails.\n\n\nWith agy-agent-coders:\n\nEveryday commands run automatically: everyday tasks—inspecting files (ls, cat, grep, etc.), creating directories (mkdir, touch), R, Quarto, Python, and read-only git/GitHub actions run without asking. It also automatically accepts edits to files inside your project repository.\nUnlisted commands ask for approval: Anything not on the team’s auto-approved list (copying, moving, or deleting files, pip, or running other software) will prompt for your confirmation before running. This is normal and expected.\nSafety guards: Destructive actions like git reset --hard, force pushes (git push --force), git clean -f, recursive deletions (rm -r) outside your project directory, pushing to main, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first.",
     "crumbs": [
       "What Is Agentic Coding?",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Activity: Edit a Quarto Book with an Agent</span>"
@@ -406,7 +417,7 @@
     "href": "content/skills-100.html#set-it-up-with-a-prompt",
     "title": "Agent Skills 100: Telling the Agent How You Work",
     "section": "Set it up with a prompt",
-    "text": "Set it up with a prompt\nYou don’t need to write the file by hand, or even know where it goes. Start your agent and give it this prompt. It works in Claude Code and Antigravity: the agent works out which file it reads.\n\n\n\n\n\n\nNoteCopy-paste this prompt into your agent\n\n\n\n\nCreate my global instructions file, the one you read in every project, with my workflow preferences. If you are Claude Code, it is $CLAUDE_CONFIG_DIR/CLAUDE.md when CLAUDE_CONFIG_DIR is set, and ~/.claude/CLAUDE.md otherwise. If you are Antigravity, it is ~/.gemini/config/AGENTS.md. Tell me the path you used.\nHere is how I work:\n“I am starting a new task” means:\n\nCreate a GitHub issue for the task\nCreate a branch for the task\nWork on the branch\n\n“Task is done” or “Let’s finish up the task” means:\n\nCommit the work on the task’s branch, push the branch, and open a PR\nTell me what the PR changes and ask me before merging it\nMerge the PR once I say yes\nAsk me before deleting the branch\n\nNote: this assumes I’m working on my own. For collaborative work, I’ll open the PR and assign a reviewer instead of merging.\n“Get ready for clear” means:\n\nClose any loose ends (pending edits, uncommitted changes). Commit on the task’s branch, never on main; if we are on main, ask me what to do\nReview memories for outdated information and update them\nUpdate the handoff note in notes/\nKeep the handoff concise — move detailed info to separate files in notes/ if it’s getting long\nAsk me what my next task will be when I return and put that in the handoff\n\n“Initialize this repo” means:\n\nAdd an open license if one is missing\nAdd a reuse statement to the repo\nCheck the README for basic reproducibility (instructions to run, dependencies listed, clear entry point)\n\nGit rules:\n\nNever push to main. Work on a branch and open a PR\nNever use destructive git actions: no --force pushes, no git reset --hard, no git clean -f, no deleting branches that haven’t been merged\nAlways create new commits rather than amending\nAsk before any action that could lose work\n\n\n\n\nThe agent will create the file for you. Review it, tweak anything you want, and you’re done.\nOver time, add more shortcuts as you develop habits. The file grows with you.\n\n\n\n\n\n\nTipExpect it to stop and ask\n\n\n\nWhen you say “Task is done”, the agent opens the PR and then stops to ask before merging and before deleting the branch. That is on purpose: you decide when work goes into main. With Antigravity, the guardrails enforce this even if the instructions are missing, and Antigravity may show its own approval prompt after you say yes. If you start working without “I am starting a new task”, the agent is on main and cannot push there. Ask it to move the work to a new branch.",
+    "text": "Set it up with a prompt\nYou don’t need to write the file by hand, or even know where it goes. Start your agent and give it this prompt. It works in Claude Code and Antigravity: the agent works out which file it reads.\n\n\n\n\n\n\nNoteCopy-paste this prompt into your agent\n\n\n\n\nCreate my global instructions file, the one you read in every project, with my workflow preferences. If you are Claude Code, it is $CLAUDE_CONFIG_DIR/CLAUDE.md when CLAUDE_CONFIG_DIR is set, and ~/.claude/CLAUDE.md otherwise. If you are Antigravity, it is ~/.gemini/config/AGENTS.md. Tell me the path you used.\nHere is how I work:\n“I am starting a new task” means:\n\nCreate a GitHub issue for the task\nCreate a branch for the task\nWork on the branch\n\n“Task is done” or “Let’s finish up the task” means:\n\nCommit the work on the task’s branch, push the branch, and open a PR\nTell me what the PR changes and ask me before merging it\nMerge the PR once I say yes\nAsk me before deleting the branch\n\nNote: this assumes I’m working on my own. For collaborative work, I’ll open the PR and assign a reviewer instead of merging.\n“I am about to clear” or “Get ready to clear” means:\n\nClose any loose ends (pending edits, uncommitted changes). Commit on the task’s branch, never on main; if we are on main, ask me what to do\nReview memories for outdated information and update them\nUpdate the handoff note, notes/handoff.md\nKeep the handoff concise — move detailed info to separate topic files in notes/ if it’s getting long\nAsk me what my next task will be when I return and put that in the handoff\n\n“Initialize this repo” means:\n\nAdd an open license if one is missing\nAdd a reuse statement to the repo\nCheck the README for basic reproducibility (instructions to run, dependencies listed, clear entry point)\n\nGit rules:\n\nNever push to main. Work on a branch and open a PR\nNever use destructive git actions: no --force pushes, no git reset --hard, no git clean -f, no deleting branches that haven’t been merged\nAlways create new commits rather than amending\nAsk before any action that could lose work\n\n\n\n\nThe agent will create the file for you. Review it, tweak anything you want, and you’re done.\nThe GitHub steps (issues, pushing, pull requests) need the GitHub access you set up in Setup. With Token for one repository they work only in that repository. With No access, the agent can still make branches and commits on the hub, but the issue, push and PR steps will fail; tell it to skip them.\nOver time, add more shortcuts as you develop habits. The file grows with you.\n\n\n\n\n\n\nTipExpect it to stop and ask\n\n\n\nWhen you say “Task is done”, the agent opens the PR and then stops to ask before merging and before deleting the branch. That is on purpose: you decide when work goes into main. With Antigravity, the guardrails enforce this even if the instructions are missing, and Antigravity may show its own approval prompt after you say yes.\nIf you start working without “I am starting a new task”, the agent is on main. Antigravity’s guard will not let it push there; Claude Code’s auto mode will, unless your instructions stop it. Either way, ask the agent to move the work to a new branch.",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Agent Skills 100: Telling the Agent How You Work</span>"
@@ -450,7 +461,7 @@
     "href": "content/skills-101.html#the-workflow-clear-handoff-notes",
     "title": "Agent Skills 101: The Clear–Handoff–Notes Workflow",
     "section": "The workflow: clear, handoff, notes",
-    "text": "The workflow: clear, handoff, notes\nThe core habit is three steps:\n\n1. Work on a task\nStart your agent and give it something to do. As it works, it builds up conversation context — the files it has read, the decisions it has made, the changes it has written.\n\n\n2. Before you stop: handoff\nWhen you’re done with a task (or switching to something else), tell the agent:\n\nWrite a handoff note to notes/ summarizing what you did, what’s left, and any decisions you made.\n\nThe agent creates a short file — like notes/handoff-2026-09-29.md — capturing exactly what the next session needs to know.\n\n\n3. Clear and continue\nRun /clear (or close the session). The conversation context is gone, but the handoff note is on disk.\nNext time, start the agent and say:\n\nRead the notes in notes/ and pick up where we left off.\n\nThe agent reads the handoff, gets oriented, and continues the work.",
+    "text": "The workflow: clear, handoff, notes\nThe core habit is three steps:\n\n1. Work on a task\nStart your agent and give it something to do. As it works, it builds up conversation context — the files it has read, the decisions it has made, the changes it has written.\n\n\n2. Before you stop: handoff\nWhen you’re done with a task (or switching to something else), tell the agent:\n\nI am about to clear.\n\nIf you set up your instructions in Skills 100, that phrase is enough: the agent commits loose ends and updates notes/handoff.md. Without it, spell it out:\n\nUpdate the handoff note in notes/handoff.md with what we did, what’s left, and any decisions we made.\n\nThere is one handoff file, and the agent rewrites it each time, so it always describes where things stand now. Git keeps the old versions.\n\n\n3. Clear and continue\nRun /clear (it works in both Claude Code and Antigravity), or close the session. The conversation context is gone, but the handoff note is on disk.\nNext time, start the agent and say:\n\nRead the notes in notes/ and pick up where we left off.\n\nThe agent reads the handoff, gets oriented, and continues the work.",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Agent Skills 101: The Clear–Handoff–Notes Workflow</span>"
@@ -472,7 +483,7 @@
     "href": "content/skills-101.html#what-does-not-go-in-a-handoff-note",
     "title": "Agent Skills 101: The Clear–Handoff–Notes Workflow",
     "section": "What does NOT go in a handoff note",
-    "text": "What does NOT go in a handoff note\n\nEntire file contents — the agent can read files itself\nCode dumps — the code is in the repo\nFull project history — keep it to what’s relevant right now\nAnything the agent can figure out by looking at the repo\n\n\n\n\n\n\n\nTip\n\n\n\nThink of a handoff note like a sticky note for a colleague: “I finished X, next step is Y, watch out for Z.”",
+    "text": "What does NOT go in a handoff note\n\nLong detail on one topic — put that in its own file in notes/ and point to it from the handoff\nEntire file contents — the agent can read files itself\nCode dumps — the code is in the repo\nFull project history — keep it to what’s relevant right now\nAnything the agent can figure out by looking at the repo\n\n\n\n\n\n\n\nTip\n\n\n\nThink of a handoff note like a sticky note for a colleague: “I finished X, next step is Y, watch out for Z.”",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Agent Skills 101: The Clear–Handoff–Notes Workflow</span>"
@@ -483,7 +494,7 @@
     "href": "content/skills-101.html#example",
     "title": "Agent Skills 101: The Clear–Handoff–Notes Workflow",
     "section": "Example",
-    "text": "Example\nHere’s what a handoff note might look like:\n# Handoff — 2026-09-29\n\n## Done\n- Set up Quarto book structure for clinic docs\n- Wrote first drafts of setup and models chapters\n\n## Next\n- Write the \"What Is Agentic Coding?\" chapter\n- Review setup chapter against latest participant-quickstart.md\n\n## Decisions\n- Dropped PDF/docx output for now — HTML only until content stabilizes\n- Using parts in _quarto.yml to group chapters into sections",
+    "text": "Example\nHere’s what a handoff note might look like:\n# Handoff\n\nUpdated 2026-09-29.\n\n## Done\n- Set up Quarto book structure for clinic docs\n- Wrote first drafts of setup and models chapters\n\n## Next\n- Write the \"What Is Agentic Coding?\" chapter\n- Check the setup chapter against the hub's current sign-in steps\n\n## Decisions\n- Dropped PDF/docx output for now — HTML only until content stabilizes\n- Using parts in _quarto.yml to group chapters into sections\n- Why we chose HTML only: see notes/output-formats.md",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Agent Skills 101: The Clear–Handoff–Notes Workflow</span>"
@@ -505,7 +516,7 @@
     "href": "content/skills-101.html#the-notes-directory",
     "title": "Agent Skills 101: The Clear–Handoff–Notes Workflow",
     "section": "The notes/ directory",
-    "text": "The notes/ directory\nKeep handoff notes and working notes in a notes/ directory in your project. This keeps them separate from your actual project files and easy to find.\nSome things that work well in notes/:\n\nHandoff notes (handoff-YYYY-MM-DD.md)\nPlans and task lists for ongoing work\nAnalysis summaries from agent tasks (like the reproducibility analysis)",
+    "text": "The notes/ directory\nKeep handoff notes and working notes in a notes/ directory in your project. This keeps them separate from your actual project files and easy to find.\nSome things that work well in notes/:\n\nThe handoff note (handoff.md), kept short\nTopic notes the handoff points to (notes/output-formats.md, notes/data-sources.md)\nPlans and task lists for ongoing work\nAnalysis summaries from agent tasks (like the reproducibility analysis)",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Agent Skills 101: The Clear–Handoff–Notes Workflow</span>"
@@ -516,7 +527,7 @@
     "href": "content/skills-101.html#branches-and-prs",
     "title": "Agent Skills 101: The Clear–Handoff–Notes Workflow",
     "section": "Branches and PRs",
-    "text": "Branches and PRs\nOnce you’re comfortable with clear/handoff/notes, you can add git branches and pull requests to the workflow:\n\nCreate a branch for a task\nDo the work (with clear/handoff as needed)\nOpen a PR when it’s ready\nMerge and move on\n\nThis is a natural complement — the branch keeps your changes isolated and reviewable, and the handoff notes help you (or someone else) pick up the work if it spans multiple sessions. But the clear/handoff/notes habit is the foundation. Get that down first.",
+    "text": "Branches and PRs\nClear–handoff–notes fits inside the branch-and-PR workflow from Skills 100:\n\n“I am starting a new task”: the agent makes an issue and a branch\nDo the work. Say “I am about to clear” and /clear as often as you need; the handoff note is committed on the branch, so the next session picks it up\n“Task is done”: the agent opens a PR and asks before merging\n\nThe branch keeps the changes isolated and reviewable. The handoff note lets you, or someone else, pick up work that spans several sessions.",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Agent Skills 101: The Clear–Handoff–Notes Workflow</span>"
@@ -525,67 +536,100 @@
   {
     "objectID": "content/skills-102.html",
     "href": "content/skills-102.html",
-    "title": "Agent Skills 102: SKILLS.md",
+    "title": "Agent Skills 102: Skills",
     "section": "",
-    "text": "What is SKILLS.md?\nA SKILLS.md file lives in your project and teaches the agent reusable tasks — things you do repeatedly that you want done the same way every time. Instead of re-explaining a process in every session, you write it once in SKILLS.md and the agent follows it.\nThink of it as a recipe book for your agent.",
+    "text": "What is a skill?\nA skill teaches the agent a task you do again and again, so it is done the same way every time. Instead of re-explaining a process in every session, you write it down once and the agent follows it.\nThink of it as a recipe card for your agent.\nEach skill is a short file called SKILL.md, in its own folder, with two parts:\nClaude Code and Antigravity both understand this format, so one skill works in either tool.",
     "crumbs": [
       "Agent Skills",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: SKILLS.md</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
+    ]
+  },
+  {
+    "objectID": "content/skills-102.html#what-is-a-skill",
+    "href": "content/skills-102.html#what-is-a-skill",
+    "title": "Agent Skills 102: Skills",
+    "section": "",
+    "text": "A name and a one-line description of when to use it.\nThe steps to follow.",
+    "crumbs": [
+      "Agent Skills",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
     ]
   },
   {
     "objectID": "content/skills-102.html#how-it-works",
     "href": "content/skills-102.html#how-it-works",
-    "title": "Agent Skills 102: SKILLS.md",
+    "title": "Agent Skills 102: Skills",
     "section": "How it works",
-    "text": "How it works\nWhen you tell an agent to use a skill, it reads SKILLS.md, finds the matching section, and follows those instructions. For example:\n\nUse the “render-check” skill to build and verify the book.\n\nThe agent looks up “render-check” in SKILLS.md and executes the steps.",
+    "text": "How it works\nAt the start of every session, the agent reads only the name and description of each skill it has. It reads the steps only when it needs them. That keeps skills cheap: you can have many without filling up the conversation.\nThe agent uses a skill in two ways:\n\nYou ask for it by name. “Use the render-check skill.” In Claude Code you can also type /render-check.\nThe agent picks it on its own when your request matches the description. That is why a good description says when to use the skill, not only what it does.",
     "crumbs": [
       "Agent Skills",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: SKILLS.md</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
     ]
   },
   {
-    "objectID": "content/skills-102.html#writing-a-skill",
-    "href": "content/skills-102.html#writing-a-skill",
-    "title": "Agent Skills 102: SKILLS.md",
-    "section": "Writing a skill",
-    "text": "Writing a skill\nA skill is a section in SKILLS.md with a clear name and step-by-step instructions. Keep them concrete and specific.\n\nExample: render-check\n## render-check\n\nRender the Quarto book and check for problems.\n\n1. Run `quarto render` in the project root\n2. Check the output for errors or warnings\n3. If there are errors, read the error message and fix the issue\n4. Re-render until it builds cleanly\n5. Report what you fixed (if anything)\n\n\nExample: format-bib\n## format-bib\n\nClean up the bibliography file.\n\n1. Read `content/references.bib`\n2. Check each entry for:\n   - Missing fields (author, title, year, journal/publisher)\n   - Inconsistent formatting (e.g., mixed use of curly braces)\n   - Duplicate entries (same DOI or matching author+title+year)\n3. Fix any issues found\n4. Sort entries alphabetically by citation key\n\n\nExample: daily-handoff\n## daily-handoff\n\nWrite an end-of-session handoff note.\n\n1. Summarize what was done in this session\n2. List what should happen next\n3. Note any decisions or blockers\n4. Save to `notes/handoff-YYYY-MM-DD.md` using today's date",
+    "objectID": "content/skills-102.html#what-a-skill-looks-like",
+    "href": "content/skills-102.html#what-a-skill-looks-like",
+    "title": "Agent Skills 102: Skills",
+    "section": "What a skill looks like",
+    "text": "What a skill looks like\n---\nname: render-check\ndescription: Render the Quarto book and fix any errors. Use after editing chapters or _quarto.yml, or when asked to check that the book builds.\n---\n\n1. Run `quarto render` in the project root\n2. Check the output for errors or warnings\n3. If there are errors, read the error message and fix the issue\n4. Re-render until it builds cleanly\n5. Report what you fixed (if anything)\nThe part between the --- lines is the name and description. Everything below is the steps.",
     "crumbs": [
       "Agent Skills",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: SKILLS.md</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
+    ]
+  },
+  {
+    "objectID": "content/skills-102.html#make-one-with-a-prompt",
+    "href": "content/skills-102.html#make-one-with-a-prompt",
+    "title": "Agent Skills 102: Skills",
+    "section": "Make one with a prompt",
+    "text": "Make one with a prompt\nAs with your instructions file in Skills 100, you do not need to know where skills go. Ask the agent:\n\n\n\n\n\n\nNoteCopy-paste this prompt into your agent\n\n\n\n\nCreate a skill for this project named render-check, in the folder where you load skills for this project, so it is committed with the repo. Tell me the path you used.\nDescription: Render the Quarto book and fix any errors. Use after editing chapters or _quarto.yml, or when asked to check that the book builds.\nSteps:\n\nRun quarto render in the project root\nCheck the output for errors or warnings\nIf there are errors, read the error message and fix the issue\nRe-render until it builds cleanly\nReport what you fixed (if anything)\n\n\n\n\nSkills are loaded when a session starts, so /clear or restart the agent before you try it:\n\nUse the render-check skill.\n\nChange the name, description and steps for your own task. You can also ask the agent to turn something you just did together into a skill: “Make a skill from the steps we just followed to clean up the bibliography.”",
+    "crumbs": [
+      "Agent Skills",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
+    ]
+  },
+  {
+    "objectID": "content/skills-102.html#more-examples",
+    "href": "content/skills-102.html#more-examples",
+    "title": "Agent Skills 102: Skills",
+    "section": "More examples",
+    "text": "More examples\n\nformat-bib\n---\nname: format-bib\ndescription: Clean up the bibliography file. Use when asked to tidy, check or sort references.bib.\n---\n\n1. Read `content/references.bib`\n2. Check each entry for:\n   - Missing fields (author, title, year, journal/publisher)\n   - Inconsistent formatting (e.g., mixed use of curly braces)\n   - Duplicate entries (same DOI or matching author+title+year)\n3. Fix any issues found\n4. Sort entries alphabetically by citation key\n\n\nnew-chapter\n---\nname: new-chapter\ndescription: Add a new chapter to the Quarto book. Use when asked to add, create or start a chapter.\n---\n\n1. Ask me for the chapter title and which part of the book it belongs in\n2. Create `content/&lt;short-name&gt;.qmd` with a `title:` in its front matter\n3. Add it to `book.chapters` in `_quarto.yml`, in the right part\n4. Run `quarto render` and fix any errors\n5. Tell me the file name and where it appears in the book",
+    "crumbs": [
+      "Agent Skills",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
     ]
   },
   {
     "objectID": "content/skills-102.html#tips-for-writing-skills",
     "href": "content/skills-102.html#tips-for-writing-skills",
-    "title": "Agent Skills 102: SKILLS.md",
+    "title": "Agent Skills 102: Skills",
     "section": "Tips for writing skills",
-    "text": "Tips for writing skills\n\nBe specific. “Check for problems” is vague. “Run quarto render and check for errors” is actionable.\nUse numbered steps. The agent follows them in order.\nInclude the actual commands. Don’t make the agent guess what to run.\nKeep them short. A skill that’s a full page long is probably two skills.\nName them clearly. You’ll invoke them by name.",
+    "text": "Tips for writing skills\n\nWrite the description for the agent. Say when to use the skill, with the words you would actually use to ask for it.\nBe specific. “Check for problems” is vague. “Run quarto render and check for errors” is actionable.\nUse numbered steps. The agent follows them in order.\nInclude the actual commands. Don’t make the agent guess what to run.\nKeep them short. A skill that’s a full page long is probably two skills.",
     "crumbs": [
       "Agent Skills",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: SKILLS.md</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
     ]
   },
   {
-    "objectID": "content/skills-102.html#where-to-put-skills.md",
-    "href": "content/skills-102.html#where-to-put-skills.md",
-    "title": "Agent Skills 102: SKILLS.md",
-    "section": "Where to put SKILLS.md",
-    "text": "Where to put SKILLS.md\nPut it in the root of your project, next to CLAUDE.md or AGENTS.md. The agent will find it when it reads your project files.",
+    "objectID": "content/skills-102.html#project-skills-and-personal-skills",
+    "href": "content/skills-102.html#project-skills-and-personal-skills",
+    "title": "Agent Skills 102: Skills",
+    "section": "Project skills and personal skills",
+    "text": "Project skills and personal skills\nLike instructions, skills can belong to one project or to you:\n\nProject skills are committed with the repo. Anyone who clones it, and any agent working in it, gets them. Good for tasks tied to that project, like render-check.\nPersonal skills live in your home directory and work in every project. Good for your own habits. Ask the agent for “a personal skill” instead of “a skill for this project”.",
     "crumbs": [
       "Agent Skills",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: SKILLS.md</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
     ]
   },
   {
-    "objectID": "content/skills-102.html#skills.md-vs.-claude.md",
-    "href": "content/skills-102.html#skills.md-vs.-claude.md",
-    "title": "Agent Skills 102: SKILLS.md",
-    "section": "SKILLS.md vs. CLAUDE.md",
-    "text": "SKILLS.md vs. CLAUDE.md\n\n\n\n\n\n\n\n\n\nCLAUDE.md\nSKILLS.md\n\n\n\n\nPurpose\nProject context and conventions\nReusable task recipes\n\n\nWhen it’s read\nAutomatically at session start\nWhen you invoke a skill\n\n\nContents\nBuild commands, architecture, coding style\nStep-by-step procedures\n\n\n\nBoth are useful. CLAUDE.md gives the agent background knowledge. SKILLS.md gives it specific procedures to follow on demand.",
+    "objectID": "content/skills-102.html#skills-vs.-instructions",
+    "href": "content/skills-102.html#skills-vs.-instructions",
+    "title": "Agent Skills 102: Skills",
+    "section": "Skills vs. instructions",
+    "text": "Skills vs. instructions\n\n\n\n\n\n\n\n\n\nInstructions (CLAUDE.md or AGENTS.md)\nSkills\n\n\n\n\nPurpose\nContext and conventions\nReusable task recipes\n\n\nWhen it’s read\nAll of it, at every session start\nName and description at start; steps only when used\n\n\nContents\nBuild commands, architecture, your workflow phrases\nStep-by-step procedures\n\n\n\nInstructions give the agent background it always needs. Skills give it procedures to follow on demand. If your instructions file is getting long with step-by-step procedures, move them into skills.",
     "crumbs": [
       "Agent Skills",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: SKILLS.md</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Agent Skills 102: Skills</span>"
     ]
   },
   {
@@ -626,7 +670,7 @@
     "href": "content/skills-103.html#a-verification-workflow",
     "title": "Agent Skills 103: Checking the Agent’s Work",
     "section": "A verification workflow",
-    "text": "A verification workflow\nA practical approach:\n\nDoes it run? Ask the agent to execute it. Fix any errors.\nDoes it look right? Review the output with your domain knowledge. Flag anything suspicious.\nFeed it real data. Swap in your actual files and see what happens.\nAsk it to break it. Have the agent find its own bugs.\nCheck the diff. Before committing, look at what files changed. Anything unexpected?\n\n\n\n\n\n\n\nTip\n\n\n\nVerification works best as a separate task. After the agent builds something, clear the session, then start a new session focused entirely on testing and breaking what was built. A fresh session means the agent isn’t biased by the decisions it made during implementation.",
+    "text": "A verification workflow\nA practical approach:\n\nDoes it run? Ask the agent to execute it. Fix any errors.\nDoes it look right? Review the output with your domain knowledge. Flag anything suspicious.\nFeed it real data. Swap in your actual files and see what happens.\nAsk it to break it. Have the agent find its own bugs.\nCheck the diff. Look at what files changed. The pull request from “Task is done” (Skills 100) shows every change on its Files changed tab. Anything unexpected?\n\n\n\n\n\n\n\nTip\n\n\n\nVerification works best as a separate task. After the agent builds something, clear the session, then start a new session focused entirely on testing and breaking what was built. A fresh session means the agent isn’t biased by the decisions it made during implementation.",
     "crumbs": [
       "Agent Skills",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Agent Skills 103: Checking the Agent's Work</span>"

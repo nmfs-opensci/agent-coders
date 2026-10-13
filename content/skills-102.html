@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Agent Skills 102: SKILLS.md – Agent Coders Clinic</title>
+<title>Agent Skills 102: Skills – Agent Coders Clinic</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/skills-100.html">Agent Skills</a></li><li class="breadcrumb-item"><a href="../content/skills-102.html"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/skills-100.html">Agent Skills</a></li><li class="breadcrumb-item"><a href="../content/skills-102.html"><span class="chapter-title">Agent Skills 102: Skills</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a>
+  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Agent Skills 102: Skills</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,26 +270,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-skills.md" id="toc-what-is-skills.md" class="nav-link active" data-scroll-target="#what-is-skills.md">What is SKILLS.md?</a></li>
+  <li><a href="#what-is-a-skill" id="toc-what-is-a-skill" class="nav-link active" data-scroll-target="#what-is-a-skill">What is a skill?</a></li>
   <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it works</a></li>
-  <li><a href="#writing-a-skill" id="toc-writing-a-skill" class="nav-link" data-scroll-target="#writing-a-skill">Writing a skill</a>
+  <li><a href="#what-a-skill-looks-like" id="toc-what-a-skill-looks-like" class="nav-link" data-scroll-target="#what-a-skill-looks-like">What a skill looks like</a></li>
+  <li><a href="#make-one-with-a-prompt" id="toc-make-one-with-a-prompt" class="nav-link" data-scroll-target="#make-one-with-a-prompt">Make one with a prompt</a></li>
+  <li><a href="#more-examples" id="toc-more-examples" class="nav-link" data-scroll-target="#more-examples">More examples</a>
   <ul class="collapse">
-  <li><a href="#example-render-check" id="toc-example-render-check" class="nav-link" data-scroll-target="#example-render-check">Example: render-check</a></li>
-  <li><a href="#example-format-bib" id="toc-example-format-bib" class="nav-link" data-scroll-target="#example-format-bib">Example: format-bib</a></li>
-  <li><a href="#example-daily-handoff" id="toc-example-daily-handoff" class="nav-link" data-scroll-target="#example-daily-handoff">Example: daily-handoff</a></li>
+  <li><a href="#format-bib" id="toc-format-bib" class="nav-link" data-scroll-target="#format-bib">format-bib</a></li>
+  <li><a href="#new-chapter" id="toc-new-chapter" class="nav-link" data-scroll-target="#new-chapter">new-chapter</a></li>
   </ul></li>
   <li><a href="#tips-for-writing-skills" id="toc-tips-for-writing-skills" class="nav-link" data-scroll-target="#tips-for-writing-skills">Tips for writing skills</a></li>
-  <li><a href="#where-to-put-skills.md" id="toc-where-to-put-skills.md" class="nav-link" data-scroll-target="#where-to-put-skills.md">Where to put SKILLS.md</a></li>
-  <li><a href="#skills.md-vs.-claude.md" id="toc-skills.md-vs.-claude.md" class="nav-link" data-scroll-target="#skills.md-vs.-claude.md">SKILLS.md vs.&nbsp;CLAUDE.md</a></li>
+  <li><a href="#project-skills-and-personal-skills" id="toc-project-skills-and-personal-skills" class="nav-link" data-scroll-target="#project-skills-and-personal-skills">Project skills and personal skills</a></li>
+  <li><a href="#skills-vs.-instructions" id="toc-skills-vs.-instructions" class="nav-link" data-scroll-target="#skills-vs.-instructions">Skills vs.&nbsp;instructions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/nmfs-opensci/agent-coders-clinics/edit/main/content/skills-102.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/agent-coders-clinics/blob/main/content/skills-102.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/nmfs-opensci/agent-coders-clinics/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/skills-100.html">Agent Skills</a></li><li class="breadcrumb-item"><a href="../content/skills-102.html"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../content/skills-100.html">Agent Skills</a></li><li class="breadcrumb-item"><a href="../content/skills-102.html"><span class="chapter-title">Agent Skills 102: Skills</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></h1>
+<h1 class="title"><span class="chapter-title">Agent Skills 102: Skills</span></h1>
 </div>
 
 
@@ -306,76 +307,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-is-skills.md" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-skills.md">What is SKILLS.md?</h2>
-<p>A <code>SKILLS.md</code> file lives in your project and teaches the agent reusable tasks — things you do repeatedly that you want done the same way every time. Instead of re-explaining a process in every session, you write it once in <code>SKILLS.md</code> and the agent follows it.</p>
-<p>Think of it as a recipe book for your agent.</p>
+<section id="what-is-a-skill" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-skill">What is a skill?</h2>
+<p>A <strong>skill</strong> teaches the agent a task you do again and again, so it is done the same way every time. Instead of re-explaining a process in every session, you write it down once and the agent follows it.</p>
+<p>Think of it as a recipe card for your agent.</p>
+<p>Each skill is a short file called <code>SKILL.md</code>, in its own folder, with two parts:</p>
+<ul>
+<li>A <strong>name</strong> and a one-line <strong>description</strong> of when to use it.</li>
+<li>The <strong>steps</strong> to follow.</li>
+</ul>
+<p>Claude Code and Antigravity both understand this format, so one skill works in either tool.</p>
 </section>
 <section id="how-it-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-works">How it works</h2>
-<p>When you tell an agent to use a skill, it reads <code>SKILLS.md</code>, finds the matching section, and follows those instructions. For example:</p>
+<p>At the start of every session, the agent reads only the name and description of each skill it has. It reads the steps only when it needs them. That keeps skills cheap: you can have many without filling up the conversation.</p>
+<p>The agent uses a skill in two ways:</p>
+<ul>
+<li><strong>You ask for it by name.</strong> “Use the render-check skill.” In Claude Code you can also type <code>/render-check</code>.</li>
+<li><strong>The agent picks it on its own</strong> when your request matches the description. That is why a good description says <em>when</em> to use the skill, not only what it does.</li>
+</ul>
+</section>
+<section id="what-a-skill-looks-like" class="level2">
+<h2 class="anchored" data-anchor-id="what-a-skill-looks-like">What a skill looks like</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> render-check</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Render the Quarto book and fix any errors. Use after editing chapters or _quarto.yml, or when asked to check that the book builds.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Run <span class="in">`quarto render`</span> in the project root</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Check the output for errors or warnings</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>If there are errors, read the error message and fix the issue</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Re-render until it builds cleanly</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Report what you fixed (if anything)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The part between the <code>---</code> lines is the name and description. Everything below is the steps.</p>
+</section>
+<section id="make-one-with-a-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="make-one-with-a-prompt">Make one with a prompt</h2>
+<p>As with your instructions file in <a href="../content/skills-100.html">Skills 100</a>, you do not need to know where skills go. Ask the agent:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Copy-paste this prompt into your agent
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <blockquote class="blockquote">
-<p>Use the “render-check” skill to build and verify the book.</p>
+<p>Create a skill for this project named <code>render-check</code>, in the folder where you load skills for this project, so it is committed with the repo. Tell me the path you used.</p>
+<p>Description: Render the Quarto book and fix any errors. Use after editing chapters or <code>_quarto.yml</code>, or when asked to check that the book builds.</p>
+<p>Steps:</p>
+<ol type="1">
+<li>Run <code>quarto render</code> in the project root</li>
+<li>Check the output for errors or warnings</li>
+<li>If there are errors, read the error message and fix the issue</li>
+<li>Re-render until it builds cleanly</li>
+<li>Report what you fixed (if anything)</li>
+</ol>
 </blockquote>
-<p>The agent looks up “render-check” in <code>SKILLS.md</code> and executes the steps.</p>
+</div>
+</div>
+<p>Skills are loaded when a session starts, so <code>/clear</code> or restart the agent before you try it:</p>
+<blockquote class="blockquote">
+<p>Use the render-check skill.</p>
+</blockquote>
+<p>Change the name, description and steps for your own task. You can also ask the agent to turn something you just did together into a skill: “Make a skill from the steps we just followed to clean up the bibliography.”</p>
 </section>
-<section id="writing-a-skill" class="level2">
-<h2 class="anchored" data-anchor-id="writing-a-skill">Writing a skill</h2>
-<p>A skill is a section in <code>SKILLS.md</code> with a clear name and step-by-step instructions. Keep them concrete and specific.</p>
-<section id="example-render-check" class="level3">
-<h3 class="anchored" data-anchor-id="example-render-check">Example: render-check</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## render-check</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Render the Quarto book and check for problems.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Run <span class="in">`quarto render`</span> in the project root</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Check the output for errors or warnings</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>If there are errors, read the error message and fix the issue</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Re-render until it builds cleanly</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Report what you fixed (if anything)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="more-examples" class="level2">
+<h2 class="anchored" data-anchor-id="more-examples">More examples</h2>
+<section id="format-bib" class="level3">
+<h3 class="anchored" data-anchor-id="format-bib">format-bib</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> format-bib</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Clean up the bibliography file. Use when asked to tidy, check or sort references.bib.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Read <span class="in">`content/references.bib`</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Check each entry for:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Missing fields (author, title, year, journal/publisher)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Inconsistent formatting (e.g., mixed use of curly braces)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Duplicate entries (same DOI or matching author+title+year)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Fix any issues found</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Sort entries alphabetically by citation key</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-format-bib" class="level3">
-<h3 class="anchored" data-anchor-id="example-format-bib">Example: format-bib</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## format-bib</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Clean up the bibliography file.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Read <span class="in">`content/references.bib`</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Check each entry for:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Missing fields (author, title, year, journal/publisher)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Inconsistent formatting (e.g., mixed use of curly braces)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Duplicate entries (same DOI or matching author+title+year)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Fix any issues found</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Sort entries alphabetically by citation key</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="example-daily-handoff" class="level3">
-<h3 class="anchored" data-anchor-id="example-daily-handoff">Example: daily-handoff</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## daily-handoff</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Write an end-of-session handoff note.</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Summarize what was done in this session</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>List what should happen next</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Note any decisions or blockers</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Save to <span class="in">`notes/handoff-YYYY-MM-DD.md`</span> using today's date</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="new-chapter" class="level3">
+<h3 class="anchored" data-anchor-id="new-chapter">new-chapter</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> new-chapter</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Add a new chapter to the Quarto book. Use when asked to add, create or start a chapter.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Ask me for the chapter title and which part of the book it belongs in</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create <span class="in">`content/&lt;short-name&gt;.qmd`</span> with a <span class="in">`title:`</span> in its front matter</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Add it to <span class="in">`book.chapters`</span> in <span class="in">`_quarto.yml`</span>, in the right part</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Run <span class="in">`quarto render`</span> and fix any errors</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Tell me the file name and where it appears in the book</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="tips-for-writing-skills" class="level2">
 <h2 class="anchored" data-anchor-id="tips-for-writing-skills">Tips for writing skills</h2>
 <ul>
+<li><strong>Write the description for the agent.</strong> Say when to use the skill, with the words you would actually use to ask for it.</li>
 <li><strong>Be specific.</strong> “Check for problems” is vague. “Run <code>quarto render</code> and check for errors” is actionable.</li>
 <li><strong>Use numbered steps.</strong> The agent follows them in order.</li>
 <li><strong>Include the actual commands.</strong> Don’t make the agent guess what to run.</li>
 <li><strong>Keep them short.</strong> A skill that’s a full page long is probably two skills.</li>
-<li><strong>Name them clearly.</strong> You’ll invoke them by name.</li>
 </ul>
 </section>
-<section id="where-to-put-skills.md" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-put-skills.md">Where to put SKILLS.md</h2>
-<p>Put it in the root of your project, next to <code>CLAUDE.md</code> or <code>AGENTS.md</code>. The agent will find it when it reads your project files.</p>
+<section id="project-skills-and-personal-skills" class="level2">
+<h2 class="anchored" data-anchor-id="project-skills-and-personal-skills">Project skills and personal skills</h2>
+<p>Like instructions, skills can belong to one project or to you:</p>
+<ul>
+<li><strong>Project skills</strong> are committed with the repo. Anyone who clones it, and any agent working in it, gets them. Good for tasks tied to that project, like <code>render-check</code>.</li>
+<li><strong>Personal skills</strong> live in your home directory and work in every project. Good for your own habits. Ask the agent for “a personal skill” instead of “a skill for this project”.</li>
+</ul>
 </section>
-<section id="skills.md-vs.-claude.md" class="level2">
-<h2 class="anchored" data-anchor-id="skills.md-vs.-claude.md">SKILLS.md vs.&nbsp;CLAUDE.md</h2>
+<section id="skills-vs.-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="skills-vs.-instructions">Skills vs.&nbsp;instructions</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -385,29 +434,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th></th>
-<th>CLAUDE.md</th>
-<th>SKILLS.md</th>
+<th>Instructions (<code>CLAUDE.md</code> or <code>AGENTS.md</code>)</th>
+<th>Skills</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Purpose</strong></td>
-<td>Project context and conventions</td>
+<td>Context and conventions</td>
 <td>Reusable task recipes</td>
 </tr>
 <tr class="even">
 <td><strong>When it’s read</strong></td>
-<td>Automatically at session start</td>
-<td>When you invoke a skill</td>
+<td>All of it, at every session start</td>
+<td>Name and description at start; steps only when used</td>
 </tr>
 <tr class="odd">
 <td><strong>Contents</strong></td>
-<td>Build commands, architecture, coding style</td>
+<td>Build commands, architecture, your workflow phrases</td>
 <td>Step-by-step procedures</td>
 </tr>
 </tbody>
 </table>
-<p>Both are useful. <code>CLAUDE.md</code> gives the agent background knowledge. <code>SKILLS.md</code> gives it specific procedures to follow on demand.</p>
+<p>Instructions give the agent background it always needs. Skills give it procedures to follow on demand. If your instructions file is getting long with step-by-step procedures, move them into skills.</p>
 
 
 </section>

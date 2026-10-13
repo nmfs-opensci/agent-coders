@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a>
+  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: Skills</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -325,13 +325,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="before-you-stop-handoff">2. Before you stop: handoff</h3>
 <p>When you’re done with a task (or switching to something else), tell the agent:</p>
 <blockquote class="blockquote">
-<p>Write a handoff note to <code>notes/</code> summarizing what you did, what’s left, and any decisions you made.</p>
+<p>I am about to clear.</p>
 </blockquote>
-<p>The agent creates a short file — like <code>notes/handoff-2026-09-29.md</code> — capturing exactly what the next session needs to know.</p>
+<p>If you set up your instructions in <a href="../content/skills-100.html">Skills 100</a>, that phrase is enough: the agent commits loose ends and updates <code>notes/handoff.md</code>. Without it, spell it out:</p>
+<blockquote class="blockquote">
+<p>Update the handoff note in <code>notes/handoff.md</code> with what we did, what’s left, and any decisions we made.</p>
+</blockquote>
+<p>There is one handoff file, and the agent rewrites it each time, so it always describes where things stand now. Git keeps the old versions.</p>
 </section>
 <section id="clear-and-continue" class="level3">
 <h3 class="anchored" data-anchor-id="clear-and-continue">3. Clear and continue</h3>
-<p>Run <code>/clear</code> (or close the session). The conversation context is gone, but the handoff note is on disk.</p>
+<p>Run <code>/clear</code> (it works in both Claude Code and Antigravity), or close the session. The conversation context is gone, but the handoff note is on disk.</p>
 <p>Next time, start the agent and say:</p>
 <blockquote class="blockquote">
 <p>Read the notes in <code>notes/</code> and pick up where we left off.</p>
@@ -352,6 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="what-does-not-go-in-a-handoff-note" class="level2">
 <h2 class="anchored" data-anchor-id="what-does-not-go-in-a-handoff-note">What does NOT go in a handoff note</h2>
 <ul>
+<li>Long detail on one topic — put that in its own file in <code>notes/</code> and point to it from the handoff</li>
 <li>Entire file contents — the agent can read files itself</li>
 <li>Code dumps — the code is in the repo</li>
 <li>Full project history — keep it to what’s relevant right now</li>
@@ -374,19 +379,22 @@ Tip
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <p>Here’s what a handoff note might look like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Handoff — 2026-09-29</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Handoff</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Done</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up Quarto book structure for clinic docs</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wrote first drafts of setup and models chapters</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Next</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Write the "What Is Agentic Coding?" chapter</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Review setup chapter against latest participant-quickstart.md</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decisions</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dropped PDF/docx output for now — HTML only until content stabilizes</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using parts in _quarto.yml to group chapters into sections</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Updated 2026-09-29.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Done</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up Quarto book structure for clinic docs</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wrote first drafts of setup and models chapters</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Next</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Write the "What Is Agentic Coding?" chapter</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Check the setup chapter against the hub's current sign-in steps</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decisions</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dropped PDF/docx output for now — HTML only until content stabilizes</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Using parts in _quarto.yml to group chapters into sections</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why we chose HTML only: see notes/output-formats.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="why-clear-matters" class="level2">
 <h2 class="anchored" data-anchor-id="why-clear-matters">Why <code>/clear</code> matters</h2>
@@ -398,21 +406,21 @@ Tip
 <p>Keep handoff notes and working notes in a <code>notes/</code> directory in your project. This keeps them separate from your actual project files and easy to find.</p>
 <p>Some things that work well in <code>notes/</code>:</p>
 <ul>
-<li>Handoff notes (<code>handoff-YYYY-MM-DD.md</code>)</li>
+<li>The handoff note (<code>handoff.md</code>), kept short</li>
+<li>Topic notes the handoff points to (<code>notes/output-formats.md</code>, <code>notes/data-sources.md</code>)</li>
 <li>Plans and task lists for ongoing work</li>
 <li>Analysis summaries from agent tasks (like the reproducibility analysis)</li>
 </ul>
 </section>
 <section id="branches-and-prs" class="level2">
 <h2 class="anchored" data-anchor-id="branches-and-prs">Branches and PRs</h2>
-<p>Once you’re comfortable with clear/handoff/notes, you can add git branches and pull requests to the workflow:</p>
+<p>Clear–handoff–notes fits inside the branch-and-PR workflow from <a href="../content/skills-100.html">Skills 100</a>:</p>
 <ol type="1">
-<li>Create a branch for a task</li>
-<li>Do the work (with clear/handoff as needed)</li>
-<li>Open a PR when it’s ready</li>
-<li>Merge and move on</li>
+<li><strong>“I am starting a new task”</strong>: the agent makes an issue and a branch</li>
+<li>Do the work. Say <strong>“I am about to clear”</strong> and <code>/clear</code> as often as you need; the handoff note is committed on the branch, so the next session picks it up</li>
+<li><strong>“Task is done”</strong>: the agent opens a PR and asks before merging</li>
 </ol>
-<p>This is a natural complement — the branch keeps your changes isolated and reviewable, and the handoff notes help you (or someone else) pick up the work if it spans multiple sessions. But the clear/handoff/notes habit is the foundation. Get that down first.</p>
+<p>The branch keeps the changes isolated and reviewable. The handoff note lets you, or someone else, pick up work that spans several sessions.</p>
 
 
 </section>
@@ -825,8 +833,8 @@ Tip
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../content/skills-102.html" class="pagination-link" aria-label="Agent Skills 102: SKILLS.md">
-        <span class="nav-page-text"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../content/skills-102.html" class="pagination-link" aria-label="Agent Skills 102: Skills">
+        <span class="nav-page-text"><span class="chapter-title">Agent Skills 102: Skills</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

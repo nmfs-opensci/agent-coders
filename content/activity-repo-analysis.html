@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: SKILLS.md</span></a>
+  <a href="../content/skills-102.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Agent Skills 102: Skills</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,10 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#make-a-copy-of-the-practice-repository" id="toc-make-a-copy-of-the-practice-repository" class="nav-link" data-scroll-target="#make-a-copy-of-the-practice-repository">Make a copy of the practice repository</a></li>
   <li><a href="#clone-your-repository-into-the-jupyterhub." id="toc-clone-your-repository-into-the-jupyterhub." class="nav-link" data-scroll-target="#clone-your-repository-into-the-jupyterhub.">Clone your repository into the JupyterHub.</a></li>
   </ul></li>
-  <li><a href="#connect-to-github-so-you-can-push-changes" id="toc-connect-to-github-so-you-can-push-changes" class="nav-link" data-scroll-target="#connect-to-github-so-you-can-push-changes">Connect to GitHub so you can push changes</a>
-  <ul class="collapse">
-  <li><a href="#full-access" id="toc-full-access" class="nav-link" data-scroll-target="#full-access">Full access</a></li>
-  </ul></li>
+  <li><a href="#connect-to-github-so-you-can-push-changes" id="toc-connect-to-github-so-you-can-push-changes" class="nav-link" data-scroll-target="#connect-to-github-so-you-can-push-changes">Connect to GitHub so you can push changes</a></li>
   <li><a href="#start-your-agent-in-your-repository" id="toc-start-your-agent-in-your-repository" class="nav-link" data-scroll-target="#start-your-agent-in-your-repository">Start your agent in your repository</a>
   <ul class="collapse">
   <li><a href="#try-a-first-prompt" id="toc-try-a-first-prompt" class="nav-link" data-scroll-target="#try-a-first-prompt">Try a first prompt</a></li>
@@ -340,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Owner:</strong> your personal GitHub username, not an organization.</li>
 <li><strong>Repository name:</strong> <code>my-quarto-book</code>, or any name you like. The steps below use <code>my-quarto-book</code>.</li>
 <li>Choose <strong>Public</strong> and click <strong>Create repository</strong>.</li>
-<li>Make sure to cope all branches (there is a checkbox).</li>
+<li>Make sure to copy all branches (there is a checkbox).</li>
 </ol>
 </section>
 <section id="clone-your-repository-into-the-jupyterhub." class="level3">
@@ -353,80 +350,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="connect-to-github-so-you-can-push-changes" class="level2">
 <h2 class="anchored" data-anchor-id="connect-to-github-so-you-can-push-changes">Connect to GitHub so you can push changes</h2>
-<p>Choose how much of your GitHub the agent can reach:</p>
+<p>You chose how the agent reaches GitHub in <a href="../content/setup.html#github-access">Setup</a>.</p>
 <ul>
-<li><strong>Token for one repository:</strong> the agent can only push to your practice repository.</li>
-<li><strong>Full access:</strong> you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach—except NMFS GitHub Enterprise (which is SSO protected).</li>
+<li><strong>Token for one repository:</strong> your token must include <code>my-quarto-book</code>. If you made the token before this repository existed, open <a href="https://github.com/settings/personal-access-tokens" class="uri">https://github.com/settings/personal-access-tokens</a>, click your token, and add <code>my-quarto-book</code> under <strong>Repository access</strong>. Or make a new token for it and log in again with <code>gh auth login</code>.</li>
+<li><strong>Full access:</strong> nothing more to do.</li>
+<li><strong>No access:</strong> you can still do this activity. The agent works and commits on the hub; you just cannot push to GitHub.</li>
 </ul>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Token for one repository</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<section id="make-a-token-for-that-one-repository" class="level4">
-<h4 class="anchored" data-anchor-id="make-a-token-for-that-one-repository">Make a token for that one repository</h4>
-<p>Go to <a href="https://github.com/settings/personal-access-tokens/new" class="uri">https://github.com/settings/personal-access-tokens/new</a> and fill in:</p>
-<ul>
-<li><strong>Token name:</strong> JupyterHub Claude Code training</li>
-<li><strong>Expiration:</strong> a few days after the clinic</li>
-<li><strong>Resource owner:</strong> your personal GitHub username</li>
-<li><strong>Repository access:</strong> <strong>Only select repositories</strong>, then pick <code>my-quarto-book</code></li>
-<li><strong>Permissions → Repository permissions:</strong>
-<ul>
-<li><strong>Contents:</strong> Read and write</li>
-<li><strong>Pull requests:</strong> Read and write</li>
-<li><strong>Issues:</strong> Read and write</li>
-</ul></li>
-</ul>
-<p>Leave every other permission at <strong>No access</strong>. (<strong>Metadata: Read-only</strong> is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in <a href="../content/skills-100.html">Skills 100</a>.</p>
-<p>Click <strong>Generate token</strong> and copy it. GitHub shows it only once.</p>
-</section>
-<section id="log-in-to-github-with-the-token" class="level4">
-<h4 class="anchored" data-anchor-id="log-in-to-github-with-the-token">Log in to GitHub with the token</h4>
-<p>Open a terminal (<strong>File → New → Terminal</strong>) and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Answer the prompts:</p>
-<ul>
-<li><strong>Where do you use GitHub?</strong> GitHub.com</li>
-<li><strong>Preferred protocol for Git operations?</strong> HTTPS</li>
-<li><strong>Authenticate Git with your GitHub credentials?</strong> Yes</li>
-<li><strong>How would you like to authenticate?</strong> <strong>Paste an authentication token</strong></li>
-</ul>
-<p>Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. <code>gh</code> saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.</p>
-<p>Note, <strong>Logging for full access</strong> (the <strong>Full access</strong> tab) replaces the token with full access.</p>
-</section>
-</div>
-</div>
-</div>
-<section id="full-access" class="level3">
-<h3 class="anchored" data-anchor-id="full-access">Full access</h3>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>With this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).</p>
-</div>
-</div>
-<section id="log-in" class="level4">
-<h4 class="anchored" data-anchor-id="log-in">Log in</h4>
-<p>In a terminal, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Answer the prompts:</p>
-<ul>
-<li><strong>Where do you use GitHub?</strong> GitHub.com</li>
-<li><strong>Preferred protocol for Git operations?</strong> HTTPS</li>
-<li><strong>Authenticate Git with your GitHub credentials?</strong> Yes</li>
-<li><strong>How would you like to authenticate?</strong> Login with a web browser</li>
-</ul>
-<p>It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.</p>
-<p>:::</p>
-</section>
-</section>
 </section>
 <section id="start-your-agent-in-your-repository" class="level2">
 <h2 class="anchored" data-anchor-id="start-your-agent-in-your-repository">Start your agent in your repository</h2>
@@ -445,16 +374,16 @@ Important
 </div>
 <p>Open a <strong>new</strong> terminal and start your agent:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Antigravity</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This time, say <strong>yes</strong> to trusting the folder: this is the repository you want the agent to work in.</p>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">agy-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">agy-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -466,11 +395,22 @@ Important
 </blockquote>
 <p>If the agent reads your files and answers, you are set up.</p>
 <p><strong>What to expect while working:</strong></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><code>claude-agent-coders</code> starts in <strong>auto mode</strong>: routine work runs without asking, and a second model blocks risky actions. Auto mode does allow pushing to <code>main</code>, so keep your work on a branch. See <a href="../content/setup.html#guardrails">Guardrails</a>.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>With <code>agy-agent-coders</code>:</p>
 <ul>
 <li><strong>Everyday commands run automatically:</strong> everyday tasks—inspecting files (<code>ls</code>, <code>cat</code>, <code>grep</code>, etc.), creating directories (<code>mkdir</code>, <code>touch</code>), R, Quarto, Python, and read-only git/GitHub actions run without asking. It also automatically accepts edits to files inside your project repository.</li>
 <li><strong>Unlisted commands ask for approval:</strong> Anything not on the team’s auto-approved list (copying, moving, or deleting files, <code>pip</code>, or running other software) will prompt for your confirmation before running. This is normal and expected.</li>
 <li><strong>Safety guards:</strong> Destructive actions like <code>git reset --hard</code>, force pushes (<code>git push --force</code>), <code>git clean -f</code>, recursive deletions (<code>rm -r</code>) outside your project directory, pushing to <code>main</code>, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first.</li>
 </ul>
+</div>
+</div>
+</div>
 <hr>
 </section>
 </section>
