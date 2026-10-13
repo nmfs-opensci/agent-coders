@@ -76,9 +76,21 @@ If the agent reads your files and answers, you are set up.
 
 **What to expect while working:**
 
+::: {.panel-tabset}
+
+### Claude Code
+
+`claude-agent-coders` starts in **auto mode**: routine work runs without asking, and a second model blocks risky actions. Auto mode does allow pushing to `main`, so keep your work on a branch. See [Guardrails](setup.qmd#guardrails).
+
+### Antigravity
+
+With `agy-agent-coders`:
+
 - **Everyday commands run automatically:** everyday tasks—inspecting files (`ls`, `cat`, `grep`, etc.), creating directories (`mkdir`, `touch`), R, Quarto, Python, and read-only git/GitHub actions  run without asking. It also automatically accepts edits to files inside your project repository.
 - **Unlisted commands ask for approval:** Anything not on the team's auto-approved list (copying, moving, or deleting files, `pip`, or running other software) will prompt for your confirmation before running. This is normal and expected.
-- **Safety guards:** Destructive actions like `git reset --hard`, force pushes (`git push --force`), `git clean -f`, recursive deletions (`rm -r`) outside your project directory, pushing to `main`, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first. 
+- **Safety guards:** Destructive actions like `git reset --hard`, force pushes (`git push --force`), `git clean -f`, recursive deletions (`rm -r`) outside your project directory, pushing to `main`, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first.
+
+:::
 
 
 ---
