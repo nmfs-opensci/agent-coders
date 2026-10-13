@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a01ad134b821f094570d5f8adb318e63.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -321,10 +321,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Antigravity</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>In the terminal, run:</p>
+<p>In a terminal, run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/shared/workshop/claude-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When it asks, type the <strong>workshop code</strong> your organizer gives you (or paste the key starting with <code>sk-</code> if you were given one). The script gets you a personal key, shows your budget and when it expires, installs Claude Code, and starts it.</p>
-<p>The first start asks a few setup questions. Pick a theme. When it asks whether to <strong>trust this folder</strong>, say <strong>no</strong>. It is asking about your home directory, and you do not want the agent working across everything in it. This step is only to get Claude Code installed and your key saved. If Claude Code starts anyway, type <code>/exit</code> to close it.</p>
+<p>The first time you run this, it will ask for your key that starts with <code>sk-</code>. You can find your key in <code>~/shared/workshop/agentcoders-keys.md</code> (i.e.&nbsp;in the shared directory in your home directory).</p>
+<p><strong>First start</strong> Start in your home directory. <code>cd ~</code>. The first start will ask a few setup questions. Pick a theme. When it asks whether to <strong>trust this folder</strong>, say <strong>no</strong> (since you are not in a directory). This first setup is only to get Claude Code installed and your key saved. If Claude Code starts anyway, type <code>/exit</code> to close it.</p>
+<p><strong>Second and later start</strong> If you have already done a first start (at any point), then navigate to the directory you want to work in (<code>cd directory-name</code>) and then type <code>claude-agent-coders</code> or <code>~/shared/workshop/claude-agent-coders</code>.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>In the terminal, run the team launcher:</p>
@@ -336,6 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Look for the link in the terminal: click <strong>“click to authenticate”</strong> (or copy and paste the URL into your browser).</li>
 <li>Sign in with your Google account, click through the authorization prompts, and copy the authorization code.</li>
 <li>Return to the terminal and paste the code.</li>
+<li>Note, it is going to say you have no license. That is ok and correct. You are using pay-as-you-go (except NMFS is paying not you).</li>
 <li>When prompted for your <strong>Google Cloud project code</strong>, paste the project code provided to you (from Jira or your organizer).</li>
 <li>When prompted with <strong>“Accept License”</strong>, accept the <strong>‘Agent Platform’</strong>.</li>
 </ol>
@@ -355,20 +357,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <ul>
-<li><strong>Claude Code budget:</strong> <code>claude-agent-coders --budget</code> shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.</li>
-<li><strong>Switch models:</strong> Use <code>/model</code>, for example <code>/model claude-opus-4-6</code> for a hard problem. The default is Claude Sonnet 4.6; see <a href="../content/models-and-budget.html">Models &amp; Budget</a>.</li>
-<li><strong>Full path:</strong> If <code>claude-agent-coders</code> is not found, use <code>~/shared/workshop/claude-agent-coders</code>.</li>
+<li><strong>Claude Code budget:</strong> In a terminal,<code>claude-agent-coders --budget</code> shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.</li>
+<li><strong>Switch models:</strong> In Claude, use <code>/model</code>, for example <code>/model claude-opus-4-6</code> for a hard problem. The default is Claude Sonnet 4.6; see <a href="../content/models-and-budget.html">Models &amp; Budget</a>.</li>
+<li><strong>Full path:</strong> In a termnal, if <code>claude-agent-coders</code> is not found, use <code>~/shared/workshop/claude-agent-coders</code>.</li>
 <li><strong>Your settings are preserved:</strong> <code>claude-agent-coders</code> preserves your personal configurations.</li>
 </ul>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <ul>
-<li><strong>Always use the team launcher:</strong> Start Antigravity with <code>agy-agent-coders</code>, not plain <code>agy</code>. Plain <code>agy</code> asks for permission before every single shell command out of the box; <code>agy-agent-coders</code> adds everyday commands to your settings and guards against destructive actions.</li>
-<li><strong>Check settings:</strong> Run <code>agy-agent-coders --check</code> in a terminal to see the auto-approved commands and edit mode configured for your account.</li>
-<li><strong>Do not use <code>agy --sandbox</code> on the hub:</strong> The hub’s container security does not support container sandboxing.</li>
-<li><strong>Interactive vs non-interactive (<code>agy -p</code>):</strong> Non-interactive mode (<code>agy -p "..."</code>) stops the whole task at the first command requiring approval, so stick to the interactive terminal session during clinic exercises.</li>
-<li><strong>Chained commands:</strong> Permission rules match whole words from the start of a command; each segment of a chained command (like <code>cmd1 &amp;&amp; cmd2</code> or <code>cmd1 | cmd2</code>) must match on its own. Chained commands that include unapproved segments will ask for approval.</li>
+<li><strong>Always use the team launcher:</strong> Start Antigravity in a terminal with <code>agy-agent-coders</code>, not plain <code>agy</code>. Plain <code>agy</code> asks for permission before every single shell command out of the box; <code>agy-agent-coders</code> adds everyday commands to your settings and guards against destructive actions.</li>
 <li><strong>Full path:</strong> If <code>agy-agent-coders</code> is not found, use <code>~/shared/agent-coders/agy-agent-coders</code>.</li>
+<li><strong>Do not use <code>agy --sandbox</code> on the hub:</strong> The hub’s container security does not support container sandboxing and JupyterHub is already a sandbox.</li>
 <li><strong>Your settings are preserved:</strong> <code>agy-agent-coders</code> preserves your personal settings and existing configurations.</li>
 </ul>
 </div>

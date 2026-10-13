@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a01ad134b821f094570d5f8adb318e63.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -272,8 +272,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start">Before you start</a>
   <ul class="collapse">
-  <li><a href="#connect-the-hub-to-github-and-copy-the-practice-repository" id="toc-connect-the-hub-to-github-and-copy-the-practice-repository" class="nav-link" data-scroll-target="#connect-the-hub-to-github-and-copy-the-practice-repository">1. Connect the hub to GitHub and copy the practice repository</a></li>
-  <li><a href="#start-your-agent-in-your-repository" id="toc-start-your-agent-in-your-repository" class="nav-link" data-scroll-target="#start-your-agent-in-your-repository">2. Start your agent in your repository</a></li>
+  <li><a href="#make-a-copy-of-the-practice-repository" id="toc-make-a-copy-of-the-practice-repository" class="nav-link" data-scroll-target="#make-a-copy-of-the-practice-repository">Make a copy of the practice repository</a></li>
+  <li><a href="#clone-your-repository-into-the-jupyterhub." id="toc-clone-your-repository-into-the-jupyterhub." class="nav-link" data-scroll-target="#clone-your-repository-into-the-jupyterhub.">Clone your repository into the JupyterHub.</a></li>
+  </ul></li>
+  <li><a href="#connect-to-github-so-you-can-push-changes" id="toc-connect-to-github-so-you-can-push-changes" class="nav-link" data-scroll-target="#connect-to-github-so-you-can-push-changes">Connect to GitHub so you can push changes</a>
+  <ul class="collapse">
+  <li><a href="#full-access" id="toc-full-access" class="nav-link" data-scroll-target="#full-access">Full access</a></li>
+  </ul></li>
+  <li><a href="#start-your-agent-in-your-repository" id="toc-start-your-agent-in-your-repository" class="nav-link" data-scroll-target="#start-your-agent-in-your-repository">Start your agent in your repository</a>
+  <ul class="collapse">
+  <li><a href="#try-a-first-prompt" id="toc-try-a-first-prompt" class="nav-link" data-scroll-target="#try-a-first-prompt">Try a first prompt</a></li>
   </ul></li>
   <li><a href="#phase-1-plan-the-edits" id="toc-phase-1-plan-the-edits" class="nav-link" data-scroll-target="#phase-1-plan-the-edits">Phase 1: Plan the edits</a>
   <ul class="collapse">
@@ -323,28 +331,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this activity you’ll practice the full clear–handoff–notes workflow from <a href="../content/skills-101.html">Skills 101</a>. You’ll use an AI coding agent to plan and execute edits to a real Quarto book — the same template this documentation is built on.</p>
 <section id="before-you-start" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-start">Before you start</h2>
-<section id="connect-the-hub-to-github-and-copy-the-practice-repository" class="level3">
-<h3 class="anchored" data-anchor-id="connect-the-hub-to-github-and-copy-the-practice-repository">1. Connect the hub to GitHub and copy the practice repository</h3>
-<p>Use your existing GitHub account. You do not need a separate account or approval from your organization. Choose how much of your GitHub the agent can reach:</p>
-<ul>
-<li><strong>Token for one repository:</strong> the agent can only push to your practice repository. Use this if your GitHub account can see private work repositories, or you are not sure.</li>
-<li><strong>Full access:</strong> you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach, including private repositories in your work organizations.</li>
-</ul>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Token for one repository</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Full access</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<section id="make-your-own-copy-of-the-practice-repository" class="level4">
-<h4 class="anchored" data-anchor-id="make-your-own-copy-of-the-practice-repository">Make your own copy of the practice repository</h4>
-<p>Do this on GitHub’s website, before you make the token.</p>
+<section id="make-a-copy-of-the-practice-repository" class="level3">
+<h3 class="anchored" data-anchor-id="make-a-copy-of-the-practice-repository">Make a copy of the practice repository</h3>
+<p>Do this on GitHub’s website.</p>
 <ol type="1">
 <li>Open the <a href="https://github.com/nmfs-opensci/NOAA-quarto-book">NOAA Quarto book template</a>.</li>
 <li>Click <strong>Use this template → Create a new repository</strong>.</li>
 <li><strong>Owner:</strong> your personal GitHub username, not an organization.</li>
 <li><strong>Repository name:</strong> <code>my-quarto-book</code>, or any name you like. The steps below use <code>my-quarto-book</code>.</li>
 <li>Choose <strong>Public</strong> and click <strong>Create repository</strong>.</li>
+<li>Make sure to cope all branches (there is a checkbox).</li>
 </ol>
 </section>
+<section id="clone-your-repository-into-the-jupyterhub." class="level3">
+<h3 class="anchored" data-anchor-id="clone-your-repository-into-the-jupyterhub.">Clone your repository into the JupyterHub.</h3>
+<p>Open a terminal in the JupyterHub and type this (replace <code>YOUR-USERNAME</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/YOUR-USERNAME/my-quarto-book.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You now have <code>~/my-quarto-book</code> on the JupyterHub.</p>
+</section>
+</section>
+<section id="connect-to-github-so-you-can-push-changes" class="level2">
+<h2 class="anchored" data-anchor-id="connect-to-github-so-you-can-push-changes">Connect to GitHub so you can push changes</h2>
+<p>Choose how much of your GitHub the agent can reach:</p>
+<ul>
+<li><strong>Token for one repository:</strong> the agent can only push to your practice repository.</li>
+<li><strong>Full access:</strong> you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach—except NMFS GitHub Enterprise (which is SSO protected).</li>
+</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Token for one repository</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <section id="make-a-token-for-that-one-repository" class="level4">
 <h4 class="anchored" data-anchor-id="make-a-token-for-that-one-repository">Make a token for that one repository</h4>
 <p>Go to <a href="https://github.com/settings/personal-access-tokens/new" class="uri">https://github.com/settings/personal-access-tokens/new</a> and fill in:</p>
@@ -366,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="log-in-to-github-with-the-token" class="level4">
 <h4 class="anchored" data-anchor-id="log-in-to-github-with-the-token">Log in to GitHub with the token</h4>
 <p>Open a terminal (<strong>File → New → Terminal</strong>) and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Answer the prompts:</p>
 <ul>
 <li><strong>Where do you use GitHub?</strong> GitHub.com</li>
@@ -375,35 +392,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>How would you like to authenticate?</strong> <strong>Paste an authentication token</strong></li>
 </ul>
 <p>Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. <code>gh</code> saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.</p>
-</section>
-<section id="clone-your-repository" class="level4">
-<h4 class="anchored" data-anchor-id="clone-your-repository">Clone your repository</h4>
-<p>Clone with the HTTPS address (replace <code>YOUR-USERNAME</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/YOUR-USERNAME/my-quarto-book.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You now have <code>~/my-quarto-book</code> on the hub.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Working with the token
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>A new repository is not covered automatically.</strong> To use the agent on another repository, create it on GitHub’s website, then add it to the token’s selected repositories at <a href="https://github.com/settings/personal-access-tokens" class="uri">https://github.com/settings/personal-access-tokens</a>.</li>
-<li><strong>Use HTTPS remotes</strong> (<code>https://github.com/...</code>), not SSH (<code>git@github.com:...</code>).</li>
-<li><strong>If GitHub refuses something</strong>, check the token’s repositories and permissions before widening it. See <a href="../content/troubleshooting.html#github-refuses-a-push-or-gh-command">Troubleshooting</a>.</li>
-<li><strong>Logging in with the browser</strong> (the <strong>Full access</strong> tab) replaces the token with full access.</li>
-</ul>
-<p>Public repositories are still readable to the agent. The token keeps it away from private repositories and limits where it can write.</p>
-</div>
-</div>
+<p>Note, <strong>Logging for full access</strong> (the <strong>Full access</strong> tab) replaces the token with full access.</p>
 </section>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+</div>
+</div>
+<section id="full-access" class="level3">
+<h3 class="anchored" data-anchor-id="full-access">Full access</h3>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -414,7 +409,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>With this option the agent can read, change and delete anything you can on GitHub, including private repositories in your work organizations. Use it only if you are comfortable with that.</p>
+<p>With this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).</p>
 </div>
 </div>
 <section id="log-in" class="level4">
@@ -429,37 +424,12 @@ Warning
 <li><strong>How would you like to authenticate?</strong> Login with a web browser</li>
 </ul>
 <p>It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.</p>
+<p>:::</p>
 </section>
-<section id="copy-and-clone-the-practice-repository" class="level4">
-<h4 class="anchored" data-anchor-id="copy-and-clone-the-practice-repository">Copy and clone the practice repository</h4>
-<p>Create a repository in your own GitHub account from the <a href="https://github.com/nmfs-opensci/NOAA-quarto-book">NOAA Quarto book template</a>, and clone it to the hub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create my-quarto-book <span class="at">--template</span> nmfs-opensci/NOAA-quarto-book <span class="at">--public</span> <span class="at">--clone</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can use any name in place of <code>my-quarto-book</code>. You now have <code>~/my-quarto-book</code> on the hub and a matching repository on your GitHub.</p>
 </section>
-</div>
-</div>
-</div>
 </section>
-<section id="start-your-agent-in-your-repository" class="level3">
-<h3 class="anchored" data-anchor-id="start-your-agent-in-your-repository">2. Start your agent in your repository</h3>
-<p>Open a <strong>new</strong> terminal, go to your repository, and start your agent:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Antigravity</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This time, say <strong>yes</strong> to trusting the folder: this is the repository you want the agent to work in.</p>
-<p>Try a first prompt:</p>
-<blockquote class="blockquote">
-<p>What is this repository? List the main files and what they do.</p>
-</blockquote>
-<p>If the agent reads your files and answers, you are set up.</p>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">agy-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="start-your-agent-in-your-repository" class="level2">
+<h2 class="anchored" data-anchor-id="start-your-agent-in-your-repository">Start your agent in your repository</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -470,23 +440,37 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Always start <code>agy-agent-coders</code> from inside your project folder (<code>cd ~/my-quarto-book</code> first). The folder you start it in is what Antigravity treats as the project boundary, and what the safety guard protects around.</p>
+<p>Always start your agent from inside your project folder (<code>cd ~/my-quarto-book</code> first). The folder you start it in is what your agent treats as the project boundary.</p>
 </div>
 </div>
-<p>Try a first prompt:</p>
+<p>Open a <strong>new</strong> terminal and start your agent:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This time, say <strong>yes</strong> to trusting the folder: this is the repository you want the agent to work in.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/my-quarto-book</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">agy-agent-coders</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<section id="try-a-first-prompt" class="level3">
+<h3 class="anchored" data-anchor-id="try-a-first-prompt">Try a first prompt</h3>
+<p>Type this:</p>
 <blockquote class="blockquote">
 <p>What is this repository? List the main files and what they do.</p>
 </blockquote>
 <p>If the agent reads your files and answers, you are set up.</p>
 <p><strong>What to expect while working:</strong></p>
 <ul>
-<li><strong>Everyday commands run automatically:</strong> <code>agy-agent-coders</code> pre-approves everyday tasks—inspecting files (<code>ls</code>, <code>cat</code>, <code>grep</code>, etc.), creating directories (<code>mkdir</code>, <code>touch</code>), R, Quarto, Python, and read-only git/GitHub actions—so they run without asking. It also automatically accepts edits to files inside your project repository.</li>
+<li><strong>Everyday commands run automatically:</strong> everyday tasks—inspecting files (<code>ls</code>, <code>cat</code>, <code>grep</code>, etc.), creating directories (<code>mkdir</code>, <code>touch</code>), R, Quarto, Python, and read-only git/GitHub actions run without asking. It also automatically accepts edits to files inside your project repository.</li>
 <li><strong>Unlisted commands ask for approval:</strong> Anything not on the team’s auto-approved list (copying, moving, or deleting files, <code>pip</code>, or running other software) will prompt for your confirmation before running. This is normal and expected.</li>
-<li><strong>Safety guards:</strong> The launcher blocks destructive actions like <code>git reset --hard</code>, force pushes (<code>git push --force</code>), <code>git clean -f</code>, recursive deletions (<code>rm -r</code>) outside your project directory, pushing to <code>main</code>, and deleting a repository. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first. Messages from the guard start with <code>agent-coders guard:</code>. See <a href="../content/setup.html#guardrails">Guardrails</a>.</li>
+<li><strong>Safety guards:</strong> Destructive actions like <code>git reset --hard</code>, force pushes (<code>git push --force</code>), <code>git clean -f</code>, recursive deletions (<code>rm -r</code>) outside your project directory, pushing to <code>main</code>, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first.</li>
 </ul>
-</div>
-</div>
-</div>
 <hr>
 </section>
 </section>
