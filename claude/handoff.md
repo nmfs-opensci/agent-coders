@@ -1,6 +1,14 @@
-# Handoff — 2026-10-03
+# Handoff — 2026-10-13
 
-## Latest (2026-10-03): Guardrails section & Skills 100 for both tools (PR #18, merged)
+## Latest (2026-10-13): Pages aligned with Eli's streamlined Setup (PR #22, merged)
+
+- Eli cut Setup down herself (commits `3880dac`, `601940b`): the Claude key now comes from `~/shared/workshop/agentcoders-keys.md`, and **GitHub Access moved into Setup** with three choices (No access / Token for one repository / Full access). Activity 1 now links there instead of repeating it.
+- **One clear phrase and one handoff file across the guide:** "I am about to clear" (Skills 100 also accepts "Get ready to clear") and a single rolling `notes/handoff.md` plus topic notes. Skills 100, 101, How-to and Activity 1 all follow this; keep new pages consistent.
+- **Skills 102 teaches real `SKILL.md` skills** (Eli chose this over a plain `SKILLS.md` file, which neither tool reads by itself), made with a copy-paste prompt that names no paths.
+- README has a CC0 no-attribution `## Reuse and citation` section. The rest of README is still the NOAA-quarto-book template text.
+- Details and what is untested: `claude/notes/setup-decisions.md`, section "Consistency pass after Setup cleanup".
+
+## Earlier (2026-10-03): Guardrails section & Skills 100 for both tools (PR #18, merged)
 
 - Setup has a **Guardrails** section (Claude Code / Antigravity tabs); Activity, Troubleshooting and Tool Comparison link to it. It describes the guard added to `agy-agent-coders` in nmfs-opensci/agent-coders-clinics#15 (blocks pushes to `main` and repo deletion; asks before merge, branch delete, issue close, PRs into others' repos). `claude-agent-coders` has no guard: Claude Code's auto mode (Sonnet/Opus only) or manual mode is the protection.
 - Skills 100's prompt now works in Claude Code and Antigravity (it tells the agent which global file to use), asks before merging and deleting branches, and never commits on `main`. "Where does it live?" was cut to a table on purpose: Eli does not want learners taught the paths.
@@ -9,7 +17,7 @@
 
 ## Earlier (2026-10-03): GitHub access choice in Activity 1 (Issue #10, PR #16, merged)
 
-- Activity 1's GitHub step is now a tabset: **Token for one repository** (default; fine-grained PAT pasted into `gh auth login`, repo created on the website first) or **Full access** (browser `gh auth login`, with a warning). The issue's `GH_TOKEN`-per-terminal flow was dropped as too much hassle; see notes. Setup no longer runs `gh auth login`; Troubleshooting has matching tabs.
+- Activity 1's GitHub step is now a tabset: **Token for one repository** (default; fine-grained PAT pasted into `gh auth login`, repo created on the website first) or **Full access** (browser `gh auth login`, with a warning). The issue's `GH_TOKEN`-per-terminal flow was dropped as too much hassle; see notes. Troubleshooting has matching tabs. *(Superseded 2026-10-13: GitHub access now lives in Setup, with a third "No access" option.)*
 - Merged without the real-token tests. Issue #10 is still open for them (the PR said "Addresses", not "Closes").
 - Still needs a real token: pasting a fine-grained token into `gh auth login` (does gh complain about scopes?), clone/push, PR/issue creation, confirming a private org repo is refused. Issue #10's last validation line is cut off ("Ensure the guide states…").
 - Why (including why `gh-scoped-creds` was ruled out): `claude/notes/setup-decisions.md`, section "GitHub access via fine-grained token".
@@ -55,7 +63,7 @@ First draft of the Agent Coders Clinic participant guide — a Quarto book with 
 - **Review and polish** — first drafts throughout, could tighten prose and check consistency
 - **Eli's intro content** — chapter 4 has a placeholder mention of Eli's ~20 min intro; may need updating once that material is ready
 - **Activity repos** — chapter 6 says "pick a public repo" but doesn't suggest specific ones
-- **Skills 102 examples** — SKILLS.md chapter has generic examples, could use project-specific ones
+- **Skills 102** — rewritten for real `SKILL.md` skills (PR #22); the prompt is untested in Antigravity
 - **Skills 103** — marked as a bit of a placeholder, could expand with concrete worked examples
 - **Test the full activity flow** — walk through the 3-phase exercise end-to-end before the clinic
 - **`claude/notes/plan.md`** is now outdated — reflects the original plan, not the current state
