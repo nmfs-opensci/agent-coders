@@ -6,26 +6,39 @@ In this activity you'll practice the full clear–handoff–notes workflow from 
 
 ## Before you start
 
-### 1. Connect the hub to GitHub and copy the practice repository
+### Make a copy of the practice repository
 
-Use your existing GitHub account. You do not need a separate account or approval from your organization. Choose how much of your GitHub the agent can reach:
-
-- **Token for one repository:** the agent can only push to your practice repository. Use this if your GitHub account can see private work repositories, or you are not sure.
-- **Full access:** you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach, including private repositories in your work organizations.
-
-::: {.panel-tabset}
-
-### Token for one repository
-
-#### Make your own copy of the practice repository
-
-Do this on GitHub's website, before you make the token.
+Do this on GitHub's website.
 
 1. Open the [NOAA Quarto book template](https://github.com/nmfs-opensci/NOAA-quarto-book).
 2. Click **Use this template → Create a new repository**.
 3. **Owner:** your personal GitHub username, not an organization.
 4. **Repository name:** `my-quarto-book`, or any name you like. The steps below use `my-quarto-book`.
 5. Choose **Public** and click **Create repository**.
+6. Make sure to cope all branches (there is a checkbox).
+
+### Clone your repository into the JupyterHub.
+
+Open a terminal in the JupyterHub and type this (replace `YOUR-USERNAME`):
+
+```bash
+cd ~
+git clone https://github.com/YOUR-USERNAME/my-quarto-book.git
+```
+
+You now have `~/my-quarto-book` on the JupyterHub.
+
+## Connect to GitHub so you can push changes
+
+Choose how much of your GitHub the agent can reach:
+
+- **Token for one repository:** the agent can only push to your practice repository. 
+- **Full access:** you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach---except NMFS GitHub Enterprise (which is SSO protected).
+
+
+::: {.panel-tabset}
+
+### Token for one repository
 
 #### Make a token for that one repository
 
@@ -61,33 +74,15 @@ Answer the prompts:
 
 Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. `gh` saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.
 
-#### Clone your repository
+Note, **Logging for full access** (the **Full access** tab) replaces the token with full access.
 
-Clone with the HTTPS address (replace `YOUR-USERNAME`):
-
-```bash
-cd ~
-git clone https://github.com/YOUR-USERNAME/my-quarto-book.git
-```
-
-You now have `~/my-quarto-book` on the hub.
-
-::: {.callout-tip}
-## Working with the token
-
-- **A new repository is not covered automatically.** To use the agent on another repository, create it on GitHub's website, then add it to the token's selected repositories at <https://github.com/settings/personal-access-tokens>.
-- **Use HTTPS remotes** (`https://github.com/...`), not SSH (`git@github.com:...`).
-- **If GitHub refuses something**, check the token's repositories and permissions before widening it. See [Troubleshooting](troubleshooting.qmd#github-refuses-a-push-or-gh-command).
-- **Logging in with the browser** (the **Full access** tab) replaces the token with full access.
-
-Public repositories are still readable to the agent. The token keeps it away from private repositories and limits where it can write.
 :::
 
 ### Full access
 
 
 ::: {.callout-warning}
-With this option the agent can read, change and delete anything you can on GitHub, including private repositories in your work organizations. Use it only if you are comfortable with that.
+With this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).
 :::
 
 #### Log in
@@ -107,22 +102,15 @@ Answer the prompts:
 
 It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.
 
-#### Copy and clone the practice repository
-
-Create a repository in your own GitHub account from the [NOAA Quarto book template](https://github.com/nmfs-opensci/NOAA-quarto-book), and clone it to the hub:
-
-```bash
-cd ~
-gh repo create my-quarto-book --template nmfs-opensci/NOAA-quarto-book --public --clone
-```
-
-You can use any name in place of `my-quarto-book`. You now have `~/my-quarto-book` on the hub and a matching repository on your GitHub.
-
 :::
 
-### 2. Start your agent in your repository
+## Start your agent in your repository
 
-Open a **new** terminal, go to your repository, and start your agent:
+::: {.callout-important}
+Always start your agent from inside your project folder (`cd ~/my-quarto-book` first). The folder you start it in is what your agent treats as the project boundary.
+:::
+
+Open a **new** terminal and start your agent:
 
 ::: {.panel-tabset}
 
@@ -135,11 +123,6 @@ claude-agent-coders
 
 This time, say **yes** to trusting the folder: this is the repository you want the agent to work in.
 
-Try a first prompt:
-
-> What is this repository? List the main files and what they do.
-
-If the agent reads your files and answers, you are set up.
 
 ### Antigravity
 
@@ -148,11 +131,12 @@ cd ~/my-quarto-book
 agy-agent-coders
 ```
 
-::: {.callout-important}
-Always start `agy-agent-coders` from inside your project folder (`cd ~/my-quarto-book` first). The folder you start it in is what Antigravity treats as the project boundary, and what the safety guard protects around.
 :::
 
-Try a first prompt:
+
+### Try a first prompt
+
+Type this:
 
 > What is this repository? List the main files and what they do.
 
@@ -160,12 +144,9 @@ If the agent reads your files and answers, you are set up.
 
 **What to expect while working:**
 
-- **Everyday commands run automatically:** `agy-agent-coders` pre-approves everyday tasks—inspecting files (`ls`, `cat`, `grep`, etc.), creating directories (`mkdir`, `touch`), R, Quarto, Python, and read-only git/GitHub actions—so they run without asking. It also automatically accepts edits to files inside your project repository.
+- **Everyday commands run automatically:** everyday tasks—inspecting files (`ls`, `cat`, `grep`, etc.), creating directories (`mkdir`, `touch`), R, Quarto, Python, and read-only git/GitHub actions  run without asking. It also automatically accepts edits to files inside your project repository.
 - **Unlisted commands ask for approval:** Anything not on the team's auto-approved list (copying, moving, or deleting files, `pip`, or running other software) will prompt for your confirmation before running. This is normal and expected.
-- **Safety guards:** The launcher blocks destructive actions like `git reset --hard`, force pushes (`git push --force`), `git clean -f`, recursive deletions (`rm -r`) outside your project directory, pushing to `main`, and deleting a repository. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first. Messages from the guard start with `agent-coders guard:`. See [Guardrails](setup.qmd#guardrails).
-
-:::
-
+- **Safety guards:** Destructive actions like `git reset --hard`, force pushes (`git push --force`), `git clean -f`, recursive deletions (`rm -r`) outside your project directory, pushing to `main`, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first. 
 
 
 ---

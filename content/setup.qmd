@@ -24,15 +24,17 @@ Choose the tool you are using for the clinic:
 
 ### Claude Code
 
-In the terminal, run:
+In a terminal, run:
 
 ```bash
 ~/shared/workshop/claude-agent-coders
 ```
 
-When it asks, type the **workshop code** your organizer gives you (or paste the key starting with `sk-` if you were given one). The script gets you a personal key, shows your budget and when it expires, installs Claude Code, and starts it.
+The first time you run this, it will ask for your key that starts with `sk-`. You can find your key in `~/shared/workshop/agentcoders-keys.md` (i.e. in the shared directory in your home directory). 
 
-The first start asks a few setup questions. Pick a theme. When it asks whether to **trust this folder**, say **no**. It is asking about your home directory, and you do not want the agent working across everything in it. This step is only to get Claude Code installed and your key saved. If Claude Code starts anyway, type `/exit` to close it.
+**First start** Start in your home directory. `cd ~`. The first start will ask a few setup questions. Pick a theme. When it asks whether to **trust this folder**, say **no** (since you are not in a directory). This first setup is only to get Claude Code installed and your key saved. If Claude Code starts anyway, type `/exit` to close it.
+
+**Second and later start** If you have already done a first start (at any point), then navigate to the directory you want to work in (`cd directory-name`) and then type `claude-agent-coders` or `~/shared/workshop/claude-agent-coders`. 
 
 ### Antigravity
 
@@ -50,9 +52,9 @@ On your first run, it will walk you through sign-in:
 2. Look for the link in the terminal: click **"click to authenticate"** (or copy and paste the URL into your browser).
 3. Sign in with your Google account, click through the authorization prompts, and copy the authorization code.
 4. Return to the terminal and paste the code.
-5. When prompted for your **Google Cloud project code**, paste the project code provided to you (from Jira or your organizer).
-6. When prompted with **"Accept License"**, accept the **'Agent Platform'**.
-
+5. Note, it is going to say you have no license. That is ok and correct. You are using pay-as-you-go (except NMFS is paying not you).
+6. When prompted for your **Google Cloud project code**, paste the project code provided to you (from Jira or your organizer).
+7. When prompted with **"Accept License"**, accept the **'Agent Platform'**.
 
 Once authentication completes and you see the agent prompt, type `/exit` to close it so you can complete the repository setup steps below.
 
@@ -68,19 +70,16 @@ You connect the hub to GitHub in [Activity 1](activity-repo-analysis.qmd). There
 
 ### Claude Code
 
-- **Claude Code budget:** `claude-agent-coders --budget` shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.
-- **Switch models:** Use `/model`, for example `/model claude-opus-4-6` for a hard problem. The default is Claude Sonnet 4.6; see [Models & Budget](models-and-budget.qmd).
-- **Full path:** If `claude-agent-coders` is not found, use `~/shared/workshop/claude-agent-coders`.
+- **Claude Code budget:** In a terminal,`claude-agent-coders --budget` shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.
+- **Switch models:** In Claude, use `/model`, for example `/model claude-opus-4-6` for a hard problem. The default is Claude Sonnet 4.6; see [Models & Budget](models-and-budget.qmd).
+- **Full path:** In a termnal, if `claude-agent-coders` is not found, use `~/shared/workshop/claude-agent-coders`.
 - **Your settings are preserved:** `claude-agent-coders` preserves your personal configurations.
 
 ### Antigravity
 
-- **Always use the team launcher:** Start Antigravity with `agy-agent-coders`, not plain `agy`. Plain `agy` asks for permission before every single shell command out of the box; `agy-agent-coders` adds everyday commands to your settings and guards against destructive actions.
-- **Check settings:** Run `agy-agent-coders --check` in a terminal to see the auto-approved commands and edit mode configured for your account.
-- **Do not use `agy --sandbox` on the hub:** The hub's container security does not support container sandboxing.
-- **Interactive vs non-interactive (`agy -p`):** Non-interactive mode (`agy -p "..."`) stops the whole task at the first command requiring approval, so stick to the interactive terminal session during clinic exercises.
-- **Chained commands:** Permission rules match whole words from the start of a command; each segment of a chained command (like `cmd1 && cmd2` or `cmd1 | cmd2`) must match on its own. Chained commands that include unapproved segments will ask for approval.
+- **Always use the team launcher:** Start Antigravity in a terminal with `agy-agent-coders`, not plain `agy`. Plain `agy` asks for permission before every single shell command out of the box; `agy-agent-coders` adds everyday commands to your settings and guards against destructive actions.
 - **Full path:** If `agy-agent-coders` is not found, use `~/shared/agent-coders/agy-agent-coders`.
+- **Do not use `agy --sandbox` on the hub:** The hub's container security does not support container sandboxing and JupyterHub is already a sandbox.
 - **Your settings are preserved:** `agy-agent-coders` preserves your personal settings and existing configurations.
 
 :::
