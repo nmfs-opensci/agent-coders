@@ -22,13 +22,17 @@ Start your agent and give it something to do. As it works, it builds up conversa
 
 When you're done with a task (or switching to something else), tell the agent:
 
-> Write a handoff note to `notes/` summarizing what you did, what's left, and any decisions you made.
+> I am about to clear.
 
-The agent creates a short file — like `notes/handoff-2026-09-29.md` — capturing exactly what the next session needs to know.
+If you set up your instructions in [Skills 100](skills-100.qmd), that phrase is enough: the agent commits loose ends and updates `notes/handoff.md`. Without it, spell it out:
+
+> Update the handoff note in `notes/handoff.md` with what we did, what's left, and any decisions we made.
+
+There is one handoff file, and the agent rewrites it each time, so it always describes where things stand now. Git keeps the old versions.
 
 ### 3. Clear and continue
 
-Run `/clear` (or close the session). The conversation context is gone, but the handoff note is on disk.
+Run `/clear` (it works in both Claude Code and Antigravity), or close the session. The conversation context is gone, but the handoff note is on disk.
 
 Next time, start the agent and say:
 
@@ -47,6 +51,7 @@ Good handoff notes are **short and specific**:
 
 ## What does NOT go in a handoff note
 
+- Long detail on one topic — put that in its own file in `notes/` and point to it from the handoff
 - Entire file contents — the agent can read files itself
 - Code dumps — the code is in the repo
 - Full project history — keep it to what's relevant right now
@@ -61,7 +66,9 @@ Think of a handoff note like a sticky note for a colleague: "I finished X, next 
 Here's what a handoff note might look like:
 
 ```markdown
-# Handoff — 2026-09-29
+# Handoff
+
+Updated 2026-09-29.
 
 ## Done
 - Set up Quarto book structure for clinic docs
@@ -69,11 +76,12 @@ Here's what a handoff note might look like:
 
 ## Next
 - Write the "What Is Agentic Coding?" chapter
-- Review setup chapter against latest participant-quickstart.md
+- Check the setup chapter against the hub's current sign-in steps
 
 ## Decisions
 - Dropped PDF/docx output for now — HTML only until content stabilizes
 - Using parts in _quarto.yml to group chapters into sections
+- Why we chose HTML only: see notes/output-formats.md
 ```
 
 ## Why `/clear` matters
@@ -88,17 +96,17 @@ Keep handoff notes and working notes in a `notes/` directory in your project. Th
 
 Some things that work well in `notes/`:
 
-- Handoff notes (`handoff-YYYY-MM-DD.md`)
+- The handoff note (`handoff.md`), kept short
+- Topic notes the handoff points to (`notes/output-formats.md`, `notes/data-sources.md`)
 - Plans and task lists for ongoing work
 - Analysis summaries from agent tasks (like the reproducibility analysis)
 
 ## Branches and PRs
 
-Once you're comfortable with clear/handoff/notes, you can add git branches and pull requests to the workflow:
+Clear–handoff–notes fits inside the branch-and-PR workflow from [Skills 100](skills-100.qmd):
 
-1. Create a branch for a task
-2. Do the work (with clear/handoff as needed)
-3. Open a PR when it's ready
-4. Merge and move on
+1. **"I am starting a new task"**: the agent makes an issue and a branch
+2. Do the work. Say **"I am about to clear"** and `/clear` as often as you need; the handoff note is committed on the branch, so the next session picks it up
+3. **"Task is done"**: the agent opens a PR and asks before merging
 
-This is a natural complement — the branch keeps your changes isolated and reviewable, and the handoff notes help you (or someone else) pick up the work if it spans multiple sessions. But the clear/handoff/notes habit is the foundation. Get that down first.
+The branch keeps the changes isolated and reviewable. The handoff note lets you, or someone else, pick up work that spans several sessions.

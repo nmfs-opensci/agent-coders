@@ -14,7 +14,7 @@ By the end of this clinic, you will:
 - Get Claude Code running on the JupyterHub through a shared workshop gateway — no AI account or subscription needed
 - Practice a **clear–handoff–notes workflow** that keeps your work organized across sessions
 - Try a group activity where an agent analyzes a real GitHub repository
-- Learn how to write **SKILLS.md** files that teach an agent reusable tasks
+- Learn how to write **skills** that teach an agent reusable tasks
 
 ## The environment
 
@@ -25,7 +25,7 @@ Everything runs on a **sandboxed JupyterHub**. You have a terminal, a file brows
 | Time | Topic |
 |---|---|
 | **First half** | Setup, intro to agentic coding, core workflow (clear / handoff / notes) |
-| **Second half** | Group activity (repo reproducibility analysis), SKILLS.md |
+| **Second half** | Group activity (repo reproducibility analysis), skills |
 
 ## Ready?
 

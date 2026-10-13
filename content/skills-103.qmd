@@ -70,7 +70,7 @@ A practical approach:
 2. **Does it look right?** Review the output with your domain knowledge. Flag anything suspicious.
 3. **Feed it real data.** Swap in your actual files and see what happens.
 4. **Ask it to break it.** Have the agent find its own bugs.
-5. **Check the diff.** Before committing, look at what files changed. Anything unexpected?
+5. **Check the diff.** Look at what files changed. The pull request from "Task is done" ([Skills 100](skills-100.qmd)) shows every change on its **Files changed** tab. Anything unexpected?
 
 ::: {.callout-tip}
 Verification works best as a **separate task**. After the agent builds something, clear the session, then start a new session focused entirely on testing and breaking what was built. A fresh session means the agent isn't biased by the decisions it made during implementation.
