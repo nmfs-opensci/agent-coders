@@ -60,10 +60,82 @@ Once authentication completes and you see the agent prompt, type `/exit` to clos
 
 :::
 
-## GitHub access comes later
+## GitHub Access
 
-You connect the hub to GitHub in [Activity 1](activity-repo-analysis.qmd). There you choose between a token that only works on your practice repository, or full access, which lets the agent do anything on GitHub that you can. Use your existing GitHub account. You do not need a separate account or approval from your organization.
+Choose how much of your GitHub the agent can reach:
 
+- **No access** If you are not having the agent push to GitHub, then you don't have to login to GitHub at all.
+- **Token for one repository:** the agent can only push to your practice repository. 
+- **Full access:** you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach---except NMFS GitHub Enterprise (which is SSO protected).
+
+
+::: {.panel-tabset}
+
+### Token for one repository
+
+#### Make a token for that one repository
+
+Go to <https://github.com/settings/personal-access-tokens/new> and fill in:
+
+- **Token name:** JupyterHub Claude Code training
+- **Expiration:** a few days after the clinic
+- **Resource owner:** your personal GitHub username
+- **Repository access:** **Only select repositories**, then pick whatever repo you want to give it access to.
+- **Permissions → Repository permissions:**
+  - **Contents:** Read and write
+  - **Pull requests:** Read and write
+  - **Issues:** Read and write
+
+Leave every other permission at **No access**. (**Metadata: Read-only** is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in [Skills 100](skills-100.qmd).
+
+Click **Generate token** and copy it. GitHub shows it only once.
+
+#### Log in to GitHub with the token
+
+Open a terminal (**File → New → Terminal**) and run:
+
+```bash
+gh auth login
+```
+
+Answer the prompts:
+
+- **Where do you use GitHub?** GitHub.com
+- **Preferred protocol for Git operations?** HTTPS
+- **Authenticate Git with your GitHub credentials?** Yes
+- **How would you like to authenticate?** **Paste an authentication token**
+
+Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. `gh` saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.
+
+Note, **Logging for full access** (the **Full access** tab) replaces the token with full access.
+
+:::
+
+### Full access
+
+
+::: {.callout-warning}
+With this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).
+:::
+
+#### Log in
+
+In a terminal, run:
+
+```bash
+gh auth login
+```
+
+Answer the prompts:
+
+- **Where do you use GitHub?** GitHub.com
+- **Preferred protocol for Git operations?** HTTPS
+- **Authenticate Git with your GitHub credentials?** Yes
+- **How would you like to authenticate?** Login with a web browser
+
+It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.
+
+:::
 ## Good to know
 
 ::: {.panel-tabset}
