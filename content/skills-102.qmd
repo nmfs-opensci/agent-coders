@@ -1,31 +1,36 @@
 ---
-title: "Agent Skills 102: SKILLS.md"
+title: "Agent Skills 102: Skills"
 ---
 
-## What is SKILLS.md?
+## What is a skill?
 
-A `SKILLS.md` file lives in your project and teaches the agent reusable tasks — things you do repeatedly that you want done the same way every time. Instead of re-explaining a process in every session, you write it once in `SKILLS.md` and the agent follows it.
+A **skill** teaches the agent a task you do again and again, so it is done the same way every time. Instead of re-explaining a process in every session, you write it down once and the agent follows it.
 
-Think of it as a recipe book for your agent.
+Think of it as a recipe card for your agent.
+
+Each skill is a short file called `SKILL.md`, in its own folder, with two parts:
+
+- A **name** and a one-line **description** of when to use it.
+- The **steps** to follow.
+
+Claude Code and Antigravity both understand this format, so one skill works in either tool.
 
 ## How it works
 
-When you tell an agent to use a skill, it reads `SKILLS.md`, finds the matching section, and follows those instructions. For example:
+At the start of every session, the agent reads only the name and description of each skill it has. It reads the steps only when it needs them. That keeps skills cheap: you can have many without filling up the conversation.
 
-> Use the "render-check" skill to build and verify the book.
+The agent uses a skill in two ways:
 
-The agent looks up "render-check" in `SKILLS.md` and executes the steps.
+- **You ask for it by name.** "Use the render-check skill." In Claude Code you can also type `/render-check`.
+- **The agent picks it on its own** when your request matches the description. That is why a good description says *when* to use the skill, not only what it does.
 
-## Writing a skill
-
-A skill is a section in `SKILLS.md` with a clear name and step-by-step instructions. Keep them concrete and specific.
-
-### Example: render-check
+## What a skill looks like
 
 ```markdown
-## render-check
-
-Render the Quarto book and check for problems.
+---
+name: render-check
+description: Render the Quarto book and fix any errors. Use after editing chapters or _quarto.yml, or when asked to check that the book builds.
+---
 
 1. Run `quarto render` in the project root
 2. Check the output for errors or warnings
@@ -34,12 +39,43 @@ Render the Quarto book and check for problems.
 5. Report what you fixed (if anything)
 ```
 
-### Example: format-bib
+The part between the `---` lines is the name and description. Everything below is the steps.
+
+## Make one with a prompt
+
+As with your instructions file in [Skills 100](skills-100.qmd), you do not need to know where skills go. Ask the agent:
+
+::: {.callout-note}
+## Copy-paste this prompt into your agent
+
+> Create a skill for this project named `render-check`, in the folder where you load skills for this project, so it is committed with the repo. Tell me the path you used.
+>
+> Description: Render the Quarto book and fix any errors. Use after editing chapters or `_quarto.yml`, or when asked to check that the book builds.
+>
+> Steps:
+>
+> 1. Run `quarto render` in the project root
+> 2. Check the output for errors or warnings
+> 3. If there are errors, read the error message and fix the issue
+> 4. Re-render until it builds cleanly
+> 5. Report what you fixed (if anything)
+:::
+
+Skills are loaded when a session starts, so `/clear` or restart the agent before you try it:
+
+> Use the render-check skill.
+
+Change the name, description and steps for your own task. You can also ask the agent to turn something you just did together into a skill: "Make a skill from the steps we just followed to clean up the bibliography."
+
+## More examples
+
+### format-bib
 
 ```markdown
-## format-bib
-
-Clean up the bibliography file.
+---
+name: format-bib
+description: Clean up the bibliography file. Use when asked to tidy, check or sort references.bib.
+---
 
 1. Read `content/references.bib`
 2. Check each entry for:
@@ -50,37 +86,42 @@ Clean up the bibliography file.
 4. Sort entries alphabetically by citation key
 ```
 
-### Example: daily-handoff
+### new-chapter
 
 ```markdown
-## daily-handoff
+---
+name: new-chapter
+description: Add a new chapter to the Quarto book. Use when asked to add, create or start a chapter.
+---
 
-Write an end-of-session handoff note.
-
-1. Summarize what was done in this session
-2. List what should happen next
-3. Note any decisions or blockers
-4. Save to `notes/handoff-YYYY-MM-DD.md` using today's date
+1. Ask me for the chapter title and which part of the book it belongs in
+2. Create `content/<short-name>.qmd` with a `title:` in its front matter
+3. Add it to `book.chapters` in `_quarto.yml`, in the right part
+4. Run `quarto render` and fix any errors
+5. Tell me the file name and where it appears in the book
 ```
 
 ## Tips for writing skills
 
+- **Write the description for the agent.** Say when to use the skill, with the words you would actually use to ask for it.
 - **Be specific.** "Check for problems" is vague. "Run `quarto render` and check for errors" is actionable.
 - **Use numbered steps.** The agent follows them in order.
 - **Include the actual commands.** Don't make the agent guess what to run.
 - **Keep them short.** A skill that's a full page long is probably two skills.
-- **Name them clearly.** You'll invoke them by name.
 
-## Where to put SKILLS.md
+## Project skills and personal skills
 
-Put it in the root of your project, next to `CLAUDE.md` or `AGENTS.md`. The agent will find it when it reads your project files.
+Like instructions, skills can belong to one project or to you:
 
-## SKILLS.md vs. CLAUDE.md
+- **Project skills** are committed with the repo. Anyone who clones it, and any agent working in it, gets them. Good for tasks tied to that project, like `render-check`.
+- **Personal skills** live in your home directory and work in every project. Good for your own habits. Ask the agent for "a personal skill" instead of "a skill for this project".
 
-| | CLAUDE.md | SKILLS.md |
+## Skills vs. instructions
+
+| | Instructions (`CLAUDE.md` or `AGENTS.md`) | Skills |
 |---|---|---|
-| **Purpose** | Project context and conventions | Reusable task recipes |
-| **When it's read** | Automatically at session start | When you invoke a skill |
-| **Contents** | Build commands, architecture, coding style | Step-by-step procedures |
+| **Purpose** | Context and conventions | Reusable task recipes |
+| **When it's read** | All of it, at every session start | Name and description at start; steps only when used |
+| **Contents** | Build commands, architecture, your workflow phrases | Step-by-step procedures |
 
-Both are useful. `CLAUDE.md` gives the agent background knowledge. `SKILLS.md` gives it specific procedures to follow on demand.
+Instructions give the agent background it always needs. Skills give it procedures to follow on demand. If your instructions file is getting long with step-by-step procedures, move them into skills.

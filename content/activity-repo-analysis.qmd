@@ -15,7 +15,7 @@ Do this on GitHub's website.
 3. **Owner:** your personal GitHub username, not an organization.
 4. **Repository name:** `my-quarto-book`, or any name you like. The steps below use `my-quarto-book`.
 5. Choose **Public** and click **Create repository**.
-6. Make sure to cope all branches (there is a checkbox).
+6. Make sure to copy all branches (there is a checkbox).
 
 ### Clone your repository into the JupyterHub.
 
@@ -30,79 +30,11 @@ You now have `~/my-quarto-book` on the JupyterHub.
 
 ## Connect to GitHub so you can push changes
 
-Choose how much of your GitHub the agent can reach:
+You chose how the agent reaches GitHub in [Setup](setup.qmd#github-access).
 
-- **Token for one repository:** the agent can only push to your practice repository. 
-- **Full access:** you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach---except NMFS GitHub Enterprise (which is SSO protected).
-
-
-::: {.panel-tabset}
-
-### Token for one repository
-
-#### Make a token for that one repository
-
-Go to <https://github.com/settings/personal-access-tokens/new> and fill in:
-
-- **Token name:** JupyterHub Claude Code training
-- **Expiration:** a few days after the clinic
-- **Resource owner:** your personal GitHub username
-- **Repository access:** **Only select repositories**, then pick `my-quarto-book`
-- **Permissions → Repository permissions:**
-  - **Contents:** Read and write
-  - **Pull requests:** Read and write
-  - **Issues:** Read and write
-
-Leave every other permission at **No access**. (**Metadata: Read-only** is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in [Skills 100](skills-100.qmd).
-
-Click **Generate token** and copy it. GitHub shows it only once.
-
-#### Log in to GitHub with the token
-
-Open a terminal (**File → New → Terminal**) and run:
-
-```bash
-gh auth login
-```
-
-Answer the prompts:
-
-- **Where do you use GitHub?** GitHub.com
-- **Preferred protocol for Git operations?** HTTPS
-- **Authenticate Git with your GitHub credentials?** Yes
-- **How would you like to authenticate?** **Paste an authentication token**
-
-Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. `gh` saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.
-
-Note, **Logging for full access** (the **Full access** tab) replaces the token with full access.
-
-:::
-
-### Full access
-
-
-::: {.callout-warning}
-With this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).
-:::
-
-#### Log in
-
-In a terminal, run:
-
-```bash
-gh auth login
-```
-
-Answer the prompts:
-
-- **Where do you use GitHub?** GitHub.com
-- **Preferred protocol for Git operations?** HTTPS
-- **Authenticate Git with your GitHub credentials?** Yes
-- **How would you like to authenticate?** Login with a web browser
-
-It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.
-
-:::
+- **Token for one repository:** your token must include `my-quarto-book`. If you made the token before this repository existed, open <https://github.com/settings/personal-access-tokens>, click your token, and add `my-quarto-book` under **Repository access**. Or make a new token for it and log in again with `gh auth login`.
+- **Full access:** nothing more to do.
+- **No access:** you can still do this activity. The agent works and commits on the hub; you just cannot push to GitHub.
 
 ## Start your agent in your repository
 
@@ -144,9 +76,21 @@ If the agent reads your files and answers, you are set up.
 
 **What to expect while working:**
 
+::: {.panel-tabset}
+
+### Claude Code
+
+`claude-agent-coders` starts in **auto mode**: routine work runs without asking, and a second model blocks risky actions. Auto mode does allow pushing to `main`, so keep your work on a branch. See [Guardrails](setup.qmd#guardrails).
+
+### Antigravity
+
+With `agy-agent-coders`:
+
 - **Everyday commands run automatically:** everyday tasks—inspecting files (`ls`, `cat`, `grep`, etc.), creating directories (`mkdir`, `touch`), R, Quarto, Python, and read-only git/GitHub actions  run without asking. It also automatically accepts edits to files inside your project repository.
 - **Unlisted commands ask for approval:** Anything not on the team's auto-approved list (copying, moving, or deleting files, `pip`, or running other software) will prompt for your confirmation before running. This is normal and expected.
-- **Safety guards:** Destructive actions like `git reset --hard`, force pushes (`git push --force`), `git clean -f`, recursive deletions (`rm -r`) outside your project directory, pushing to `main`, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first. 
+- **Safety guards:** Destructive actions like `git reset --hard`, force pushes (`git push --force`), `git clean -f`, recursive deletions (`rm -r`) outside your project directory, pushing to `main`, and deleting a repository are blocked. Merging a pull request, deleting a branch, and closing an issue make the agent stop and ask you first.
+
+:::
 
 
 ---

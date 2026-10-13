@@ -36,12 +36,12 @@ You don't need to write the file by hand, or even know where it goes. Start your
 >
 > Note: this assumes I'm working on my own. For collaborative work, I'll open the PR and assign a reviewer instead of merging.
 >
-> **"Get ready for clear"** means:
+> **"I am about to clear"** or **"Get ready to clear"** means:
 >
 > 1. Close any loose ends (pending edits, uncommitted changes). Commit on the task's branch, never on `main`; if we are on `main`, ask me what to do
 > 2. Review memories for outdated information and update them
-> 3. Update the handoff note in `notes/`
-> 4. Keep the handoff concise — move detailed info to separate files in `notes/` if it's getting long
+> 3. Update the handoff note, `notes/handoff.md`
+> 4. Keep the handoff concise — move detailed info to separate topic files in `notes/` if it's getting long
 > 5. Ask me what my next task will be when I return and put that in the handoff
 >
 > **"Initialize this repo"** means:
@@ -60,12 +60,16 @@ You don't need to write the file by hand, or even know where it goes. Start your
 
 The agent will create the file for you. Review it, tweak anything you want, and you're done.
 
+The GitHub steps (issues, pushing, pull requests) need the GitHub access you set up in [Setup](setup.qmd#github-access). With **Token for one repository** they work only in that repository. With **No access**, the agent can still make branches and commits on the hub, but the issue, push and PR steps will fail; tell it to skip them.
+
 Over time, add more shortcuts as you develop habits. The file grows with you.
 
 ::: {.callout-tip}
 ## Expect it to stop and ask
 
-When you say "Task is done", the agent opens the PR and then stops to ask before merging and before deleting the branch. That is on purpose: you decide when work goes into `main`. With Antigravity, the [guardrails](setup.qmd#guardrails) enforce this even if the instructions are missing, and Antigravity may show its own approval prompt after you say yes. If you start working without "I am starting a new task", the agent is on `main` and cannot push there. Ask it to move the work to a new branch.
+When you say "Task is done", the agent opens the PR and then stops to ask before merging and before deleting the branch. That is on purpose: you decide when work goes into `main`. With Antigravity, the [guardrails](setup.qmd#guardrails) enforce this even if the instructions are missing, and Antigravity may show its own approval prompt after you say yes.
+
+If you start working without "I am starting a new task", the agent is on `main`. Antigravity's guard will not let it push there; Claude Code's auto mode will, unless your instructions stop it. Either way, ask the agent to move the work to a new branch.
 :::
 
 ## Global vs. project instructions

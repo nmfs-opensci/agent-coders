@@ -107,9 +107,8 @@ Answer the prompts:
 
 Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. `gh` saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.
 
-Note, **Logging for full access** (the **Full access** tab) replaces the token with full access.
+Note, **logging in for full access** (the **Full access** tab) replaces the token with full access.
 
-:::
 
 ### Full access
 
@@ -136,15 +135,16 @@ Answer the prompts:
 It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.
 
 :::
+
 ## Good to know
 
 ::: {.panel-tabset}
 
 ### Claude Code
 
-- **Claude Code budget:** In a terminal,`claude-agent-coders --budget` shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.
+- **Claude Code budget:** In a terminal, `claude-agent-coders --budget` shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.
 - **Switch models:** In Claude, use `/model`, for example `/model claude-opus-4-6` for a hard problem. The default is Claude Sonnet 4.6; see [Models & Budget](models-and-budget.qmd).
-- **Full path:** In a termnal, if `claude-agent-coders` is not found, use `~/shared/workshop/claude-agent-coders`.
+- **Full path:** In a terminal, if `claude-agent-coders` is not found, use `~/shared/workshop/claude-agent-coders`.
 - **Your settings are preserved:** `claude-agent-coders` preserves your personal configurations.
 
 ### Antigravity
@@ -158,7 +158,7 @@ It prints a one-time code. Copy it, open the link it shows, paste the code, and 
 
 ## Guardrails
 
-Once you connect GitHub in Activity 1, the agent can do on GitHub whatever your login allows. The two launchers protect you in different ways.
+Once you connect GitHub (see [GitHub Access](#github-access)), the agent can do on GitHub whatever your login allows. The two launchers protect you in different ways.
 
 ::: {.panel-tabset}
 

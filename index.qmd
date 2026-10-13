@@ -11,10 +11,10 @@ The Agent Coders Clinic is a hands-on workshop where you'll learn to use AI codi
 By the end of this clinic, you will:
 
 - Understand what an **agentic coding harness** is and how it differs from chatbots or autocomplete
-- Get Claude Code running on the JupyterHub through a shared workshop gateway — no AI account or subscription needed
+- Get Claude Code or Antigravity running on the JupyterHub — no AI account or subscription of your own needed
 - Practice a **clear–handoff–notes workflow** that keeps your work organized across sessions
-- Try a group activity where an agent analyzes a real GitHub repository
-- Learn how to write **SKILLS.md** files that teach an agent reusable tasks
+- Use an agent to plan and edit a real Quarto book, with a plan and handoff notes between sessions
+- Teach the agent your workflow (task → branch → pull request) and write **skills** for tasks you repeat
 
 ## The environment
 
@@ -25,8 +25,8 @@ Everything runs on a **sandboxed JupyterHub**. You have a terminal, a file brows
 | Time | Topic |
 |---|---|
 | **First half** | Setup, intro to agentic coding, core workflow (clear / handoff / notes) |
-| **Second half** | Group activity (repo reproducibility analysis), SKILLS.md |
+| **Second half** | Activity: edit a Quarto book with an agent; agent skills |
 
 ## Ready?
 
-Start with [Setup](content/setup.qmd): log in to the hub, get your workshop key, and start Claude Code in your own copy of a practice repository.
+Start with [Setup](content/setup.qmd): log in to the hub, run the setup script for Claude Code or Antigravity, and choose how much of your GitHub the agent can reach.

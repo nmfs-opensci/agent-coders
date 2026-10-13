@@ -39,7 +39,7 @@ A task can be planning, research, brainstorming, or building. The point is that 
 
 Two rules that save time and money:
 
-**Plan before you build.** Start by asking the agent to explore and make a plan. Save the plan to `notes/`. Then clear and start a fresh session to execute. Exploration context clutters implementation.
+**Plan before you build.** Start by asking the agent to explore and make a plan. Save the plan to `notes/`. Then clear and start a fresh session to execute. Exploration context clutters implementation. In Claude Code, **plan mode** (press **Shift+Tab** until it shows below the prompt box) keeps the agent from changing files while you plan.
 
 **Build small before building big.** One chapter, one function, one section at a time. Review it, then continue. Small pieces are easier to check and cheaper to redo.
 
@@ -47,9 +47,11 @@ Two rules that save time and money:
 
 When you're done with a task — or switching to a different one — or the conversation is just getting long — **close it**:
 
-1. Tell the agent: *"I'm about to clear. Write a handoff note to `notes/` with what we did and what's next."*
-2. Run `/clear`
+1. Tell the agent: *"I am about to clear. Update the handoff note in `notes/handoff.md` with what we did and what's next."*
+2. Run `/clear` (in Claude Code or Antigravity)
 3. Start the next task fresh
+
+In [Skills 100](skills-100.qmd) you teach the agent that "I am about to clear" means all of step 1, so you can stop spelling it out.
 
 The handoff note is a short file — what was done, what's next, any decisions made. Not a transcript, not a code dump. A sticky note for the next session.
 
@@ -73,6 +75,6 @@ Most tools can resume the previous session. This works for short interruptions �
 
 But for picking up work after a longer gap, or when someone else is taking over, start fresh:
 
-> Read the notes in `notes/` and continue where we left off.
+> Read `notes/handoff.md` and continue where we left off.
 
 This gives the agent exactly the context it needs and nothing it doesn't. And anyone on the team can pick it up — not just the person who started it.
