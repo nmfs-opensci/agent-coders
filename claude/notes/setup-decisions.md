@@ -124,3 +124,12 @@ credential for private work-organization repos.
 - **Not done:** walking the Skills 100 prompt end to end as a participant, and seeing auto
   mode's classifier block a risky action through the gateway (a test was refused by the
   model itself first).
+
+## Consistency pass after Setup cleanup (PR #22, 2026-10-13)
+
+- **Why the pages changed:** Eli streamlined Setup and moved GitHub access into it. The other pages still described the old flow, used three different "clear" prompts, and disagreed on handoff files (dated `handoff-YYYY-MM-DD.md` in Skills 101 vs one file in Skills 100). Settled on one rolling `notes/handoff.md` because that is what Skills 100's prompt and Eli's own workflow use.
+- **"Cannot push to main" is Antigravity-only.** Claude Code's auto mode allows pushes to `main`; Skills 100 and Activity 1 say so instead of implying both tools block it.
+- **Skills 102 = real Agent Skills** (Eli's choice, option "b"). The old page claimed the agent finds `SKILLS.md` on its own; it does not. The prompt asks the agent to put the skill "where you load skills for this project" and report the path, so learners are not taught paths ([[keep-paths-out-of-learner-docs]] memory).
+- **Not verified:** that Antigravity loads *project-level* skills, and that `/skill-name` works in Antigravity (`agy --help` mentions "skill expansion" for slash commands, untried). The page only promises `/render-check` for Claude Code.
+- **Left alone on purpose / still open:** Setup's and Troubleshooting's workshop-code error messages (may be stale now that keys come from `agentcoders-keys.md`; Eli has not said); README body is still the template's.
+
