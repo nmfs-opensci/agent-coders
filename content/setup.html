@@ -272,8 +272,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#get-on-the-jupyterhub" id="toc-get-on-the-jupyterhub" class="nav-link active" data-scroll-target="#get-on-the-jupyterhub">Get on the JupyterHub</a></li>
   <li><a href="#once-on-the-hub-run-the-setup-script." id="toc-once-on-the-hub-run-the-setup-script." class="nav-link" data-scroll-target="#once-on-the-hub-run-the-setup-script.">Once on the hub, run the setup script.</a></li>
-  <li><a href="#github-access-comes-later" id="toc-github-access-comes-later" class="nav-link" data-scroll-target="#github-access-comes-later">GitHub access comes later</a></li>
-  <li><a href="#good-to-know" id="toc-good-to-know" class="nav-link" data-scroll-target="#good-to-know">Good to know</a></li>
+  <li><a href="#github-access" id="toc-github-access" class="nav-link" data-scroll-target="#github-access">GitHub Access</a>
+  <ul class="collapse">
+  <li><a href="#full-access" id="toc-full-access" class="nav-link" data-scroll-target="#full-access">Full access</a></li>
+  </ul></li>
   <li><a href="#guardrails" id="toc-guardrails" class="nav-link" data-scroll-target="#guardrails">Guardrails</a></li>
   <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong">If something goes wrong</a></li>
   </ul>
@@ -346,16 +348,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="github-access-comes-later" class="level2">
-<h2 class="anchored" data-anchor-id="github-access-comes-later">GitHub access comes later</h2>
-<p>You connect the hub to GitHub in <a href="../content/activity-repo-analysis.html">Activity 1</a>. There you choose between a token that only works on your practice repository, or full access, which lets the agent do anything on GitHub that you can. Use your existing GitHub account. You do not need a separate account or approval from your organization.</p>
-</section>
-<section id="good-to-know" class="level2">
-<h2 class="anchored" data-anchor-id="good-to-know">Good to know</h2>
+<section id="github-access" class="level2">
+<h2 class="anchored" data-anchor-id="github-access">GitHub Access</h2>
+<p>Choose how much of your GitHub the agent can reach:</p>
+<ul>
+<li><strong>No access</strong> If you are not having the agent push to GitHub, then you don’t have to login to GitHub at all.</li>
+<li><strong>Token for one repository:</strong> the agent can only push to your practice repository.</li>
+<li><strong>Full access:</strong> you log in with your browser, and the agent can do anything on GitHub that you can, in every repository your account can reach—except NMFS GitHub Enterprise (which is SSO protected).</li>
+</ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Token for one repository</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<section id="make-a-token-for-that-one-repository" class="level4">
+<h4 class="anchored" data-anchor-id="make-a-token-for-that-one-repository">Make a token for that one repository</h4>
+<p>Go to <a href="https://github.com/settings/personal-access-tokens/new" class="uri">https://github.com/settings/personal-access-tokens/new</a> and fill in:</p>
+<ul>
+<li><strong>Token name:</strong> JupyterHub Claude Code training</li>
+<li><strong>Expiration:</strong> a few days after the clinic</li>
+<li><strong>Resource owner:</strong> your personal GitHub username</li>
+<li><strong>Repository access:</strong> <strong>Only select repositories</strong>, then pick whatever repo you want to give it access to.</li>
+<li><strong>Permissions → Repository permissions:</strong>
+<ul>
+<li><strong>Contents:</strong> Read and write</li>
+<li><strong>Pull requests:</strong> Read and write</li>
+<li><strong>Issues:</strong> Read and write</li>
+</ul></li>
+</ul>
+<p>Leave every other permission at <strong>No access</strong>. (<strong>Metadata: Read-only</strong> is added automatically; that is expected.) Pull requests and Issues are there for the GitHub workflow in <a href="../content/skills-100.html">Skills 100</a>.</p>
+<p>Click <strong>Generate token</strong> and copy it. GitHub shows it only once.</p>
+</section>
+<section id="log-in-to-github-with-the-token" class="level4">
+<h4 class="anchored" data-anchor-id="log-in-to-github-with-the-token">Log in to GitHub with the token</h4>
+<p>Open a terminal (<strong>File → New → Terminal</strong>) and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Answer the prompts:</p>
+<ul>
+<li><strong>Where do you use GitHub?</strong> GitHub.com</li>
+<li><strong>Preferred protocol for Git operations?</strong> HTTPS</li>
+<li><strong>Authenticate Git with your GitHub credentials?</strong> Yes</li>
+<li><strong>How would you like to authenticate?</strong> <strong>Paste an authentication token</strong></li>
+</ul>
+<p>Paste the token and press Enter. It may mention required scopes; you can ignore that for a fine-grained token. <code>gh</code> saves the token on the hub, so every terminal, and your agent, uses it until it expires. If you logged in with your browser on this hub before, this replaces that login.</p>
+<p>Note, <strong>Logging for full access</strong> (the <strong>Full access</strong> tab) replaces the token with full access.</p>
+</section>
+</div>
+</div>
+</div>
+<section id="full-access" class="level3">
+<h3 class="anchored" data-anchor-id="full-access">Full access</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With this option the agent can read, change and delete anything you can on GitHub, including private repositories. But it cannot reach NMFS GitHub Enterprise (SSO protected).</p>
+</div>
+</div>
+<section id="log-in" class="level4">
+<h4 class="anchored" data-anchor-id="log-in">Log in</h4>
+<p>In a terminal, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Answer the prompts:</p>
+<ul>
+<li><strong>Where do you use GitHub?</strong> GitHub.com</li>
+<li><strong>Preferred protocol for Git operations?</strong> HTTPS</li>
+<li><strong>Authenticate Git with your GitHub credentials?</strong> Yes</li>
+<li><strong>How would you like to authenticate?</strong> Login with a web browser</li>
+</ul>
+<p>It prints a one-time code. Copy it, open the link it shows, paste the code, and approve. When the terminal says you are logged in, you are done.</p>
+<p>::: ## Good to know</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <ul>
 <li><strong>Claude Code budget:</strong> In a terminal,<code>claude-agent-coders --budget</code> shows what you have spent, your budget, and when your key expires. Spending shows up about a minute after you use Claude.</li>
 <li><strong>Switch models:</strong> In Claude, use <code>/model</code>, for example <code>/model claude-opus-4-6</code> for a hard problem. The default is Claude Sonnet 4.6; see <a href="../content/models-and-budget.html">Models &amp; Budget</a>.</li>
@@ -363,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Your settings are preserved:</strong> <code>claude-agent-coders</code> preserves your personal configurations.</li>
 </ul>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <ul>
 <li><strong>Always use the team launcher:</strong> Start Antigravity in a terminal with <code>agy-agent-coders</code>, not plain <code>agy</code>. Plain <code>agy</code> asks for permission before every single shell command out of the box; <code>agy-agent-coders</code> adds everyday commands to your settings and guards against destructive actions.</li>
 <li><strong>Full path:</strong> If <code>agy-agent-coders</code> is not found, use <code>~/shared/agent-coders/agy-agent-coders</code>.</li>
@@ -374,13 +445,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+</section>
+</section>
 <section id="guardrails" class="level2">
 <h2 class="anchored" data-anchor-id="guardrails">Guardrails</h2>
 <p>Once you connect GitHub in Activity 1, the agent can do on GitHub whatever your login allows. The two launchers protect you in different ways.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Antigravity</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p><code>claude-agent-coders</code> adds no guard of its own. Claude Code’s <strong>permission mode</strong> protects you. The current mode is shown below the prompt box, and <strong>Shift+Tab</strong> switches between modes.</p>
 <ul>
 <li><strong>Auto mode:</strong> before each action runs, a second model checks it. Routine work runs without asking. Risky actions are blocked, such as force pushes, <code>git reset --hard</code>, deleting files that were already there, downloading and running scripts, and merging a pull request you have not approved. Auto mode does allow pushing to <code>main</code>, so start each task on a branch.</li>
@@ -388,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><code>claude-agent-coders</code> starts in <strong>auto mode</strong>, on the default model, Claude Sonnet 4.6. Auto mode needs a <strong>Sonnet or Opus</strong> model; it is not available with Claude Haiku 4.5. If the mode below the prompt box is not <strong>auto</strong>, switch back with <code>/model claude-sonnet-4-6</code> and press <strong>Shift+Tab</strong> until it shows <strong>auto</strong>.</p>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p><code>agy-agent-coders</code> installs a guard that checks every shell command the agent runs. It watches only the agent. You can still run any of these commands yourself in a terminal.</p>
 <p><strong>Always blocked:</strong></p>
 <ul>
@@ -413,9 +486,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="if-something-goes-wrong" class="level2">
 <h2 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Antigravity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Antigravity</a></li></ul>
 <div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <ul>
 <li><strong><code>claude-agent-coders: command not found</code></strong>: Open a new terminal (new terminals load the updated <code>PATH</code> with <code>~/.local/bin</code>), or run the full path <code>~/shared/workshop/claude-agent-coders</code>.</li>
 <li><strong>“That workshop code is not right”</strong>: Check the code and try again.</li>
@@ -426,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>A key from an earlier workshop</strong>: Run <code>claude-agent-coders --reset</code>, then <code>claude-agent-coders</code> and enter the new code.</li>
 </ul>
 </div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <ul>
 <li><strong><code>agy-agent-coders: command not found</code></strong>: Open a new terminal (new terminals load the updated <code>PATH</code> with <code>~/.local/bin</code>), or run the full path <code>~/shared/agent-coders/agy-agent-coders</code>.</li>
 <li><strong>“agent-coders guard: …”</strong>: The safety guard stopped a command (see <a href="#guardrails">Guardrails</a>). For a blocked one, such as <code>git reset --hard</code> or a push to <code>main</code>, tell the agent to use a safe alternative: <code>git stash</code>, a soft reset, or a branch and a pull request. If it says <strong>“needs the user to say yes first”</strong>, the agent should ask you before trying again.</li>
