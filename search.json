@@ -732,6 +732,61 @@
     ]
   },
   {
+    "objectID": "content/vertex.html",
+    "href": "content/vertex.html",
+    "title": "Using Your Own Google Cloud Project (Vertex)",
+    "section": "",
+    "text": "What you need\nIn the clinic, the workshop pays for your agent’s model calls. After the clinic, NOAA staff can use the USAI models through Google Cloud Vertex AI, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, or Antigravity on your own Linux, Mac, or Windows computer to use your project.\nWhich models you get depends on what your project has turned on, not on the tool. If a model is not turned on, the tool will report that the model was “not found”.",
+    "crumbs": [
+      "Reference",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Your Own Google Cloud Project (Vertex)</span>"
+    ]
+  },
+  {
+    "objectID": "content/vertex.html#what-you-need",
+    "href": "content/vertex.html#what-you-need",
+    "title": "Using Your Own Google Cloud Project (Vertex)",
+    "section": "",
+    "text": "A Google Cloud project with Vertex AI and the models you want turned on. At NOAA this comes through the USAI program. You need the project ID, which looks like my-project-123456 (not the display name).\nPermission to install software on your computer. On a NOAA-managed computer, you may need IT to install these tools for you.",
+    "crumbs": [
+      "Reference",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Your Own Google Cloud Project (Vertex)</span>"
+    ]
+  },
+  {
+    "objectID": "content/vertex.html#install-your-harness",
+    "href": "content/vertex.html#install-your-harness",
+    "title": "Using Your Own Google Cloud Project (Vertex)",
+    "section": "Install your harness",
+    "text": "Install your harness\nThe harness is the program you talk to; the model behind it runs on Google Cloud. Install the one you want to use. On Linux and Mac, run the command in a terminal. On Windows, run it in PowerShell.\n\nClaude CodeOpenCodeAntigravity\n\n\nLinux and Mac:\ncurl -fsSL https://claude.ai/install.sh | bash\nWindows (PowerShell):\nirm https://claude.ai/install.ps1 | iex\nClaude Code on Windows also needs Git for Windows. Other ways to install are in the Claude Code documentation.\n\n\nLinux and Mac:\ncurl -fsSL https://opencode.ai/install | bash\nWindows: run the same command in Git Bash, or see the other ways to install in the OpenCode documentation.\n\n\nLinux and Mac:\ncurl -fsSL https://antigravity.google/cli/install.sh | bash\nWindows (PowerShell):\nirm https://antigravity.google/cli/install.ps1 | iex\nThe command it installs is called agy.\n\n\n\nClose the terminal and open a new one, so it finds the newly installed command.",
+    "crumbs": [
+      "Reference",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Your Own Google Cloud Project (Vertex)</span>"
+    ]
+  },
+  {
+    "objectID": "content/vertex.html#tell-your-harness-to-use-vertex",
+    "href": "content/vertex.html#tell-your-harness-to-use-vertex",
+    "title": "Using Your Own Google Cloud Project (Vertex)",
+    "section": "Tell your harness to use Vertex",
+    "text": "Tell your harness to use Vertex\n\nClaude CodeOpenCodeAntigravity\n\n\n1. Sign in to Google Cloud. Claude Code uses your Google login through the Google Cloud CLI (gcloud). Install the Google Cloud CLI, then run this once:\ngcloud auth application-default login\nA browser opens. Sign in with your NOAA Google account.\n2. Set three environment variables. Replace YOUR_PROJECT_ID with your project ID.\nLinux and Mac:\nexport CLAUDE_CODE_USE_VERTEX=1\nexport CLOUD_ML_REGION=global\nexport ANTHROPIC_VERTEX_PROJECT_ID=YOUR_PROJECT_ID\nThese last only for this terminal. To have them in every new terminal, add the three lines to the end of your shell’s startup file: ~/.zshrc on a Mac, ~/.bashrc on most Linux systems.\nWindows (PowerShell):\nsetx CLAUDE_CODE_USE_VERTEX 1\nsetx CLOUD_ML_REGION global\nsetx ANTHROPIC_VERTEX_PROJECT_ID YOUR_PROJECT_ID\nsetx saves them for every new PowerShell window, but not the one you typed them in. Open a new window before the next step.\n3. Start Claude Code:\nclaude\nIt should not ask you to log in to an Anthropic account. If it does, the environment variables are not set in this terminal.\nChoosing a model. Type /model inside Claude Code, or start it with claude --model claude-opus-5-5. Use the model names your project has turned on.\nRegion. global lets Google route each request to wherever there is capacity. If your project requires requests to stay in the United States, use us instead of global.\n\n\n1. Sign in to Google Cloud. OpenCode uses your Google login through the Google Cloud CLI (gcloud). Install the Google Cloud CLI, then run this once:\ngcloud auth application-default login\nA browser opens. Sign in with your NOAA Google account.\n2. Set two environment variables. Replace YOUR_PROJECT_ID with your project ID.\nLinux and Mac:\nexport GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID\nexport VERTEX_LOCATION=global\nThese last only for this terminal. To have them in every new terminal, add the two lines to the end of your shell’s startup file: ~/.zshrc on a Mac, ~/.bashrc on most Linux systems.\nWindows (PowerShell):\nsetx GOOGLE_CLOUD_PROJECT YOUR_PROJECT_ID\nsetx VERTEX_LOCATION global\nsetx saves them for every new PowerShell window, but not the one you typed them in. Open a new window before going on.\n3. List the Claude models your project has. OpenCode’s built-in model list adds a suffix (@default) to newer Claude model names, and Vertex rejects it with a “not found” error. Create a file called opencode.json in OpenCode’s settings folder (~/.config/opencode/ on Linux and Mac, %USERPROFILE%\\.config\\opencode\\ on Windows) with the models your project has turned on, for example:\n{\n  \"$schema\": \"https://opencode.ai/config.json\",\n  \"provider\": {\n    \"google-vertex-anthropic\": {\n      \"models\": {\n        \"claude-opus-5-5\": { \"name\": \"Claude Opus 5.5\" }\n      }\n    }\n  }\n}\n4. Start OpenCode with one of those models:\nopencode -m google-vertex-anthropic/claude-opus-5-5\n\n\nAntigravity does not use environment variables or gcloud for this. You give it your project when you sign in. Start it:\nagy\n\nWhen asked to “Select login method”, choose “Continue with Google Cloud”.\nA browser opens (or the terminal shows a link to open). Sign in with your NOAA Google account and allow access. If the terminal asks for a code, copy it from the browser and paste it in.\nIt may say you have no license. That is expected: your project pays as you go.\nWhen asked for your Google Cloud project, enter your project ID.\nWhen asked to accept a license, accept “Agent Platform”.\n\nTo switch to a different project later, type /logout inside Antigravity, start it again, and sign in with the other project ID.",
+    "crumbs": [
+      "Reference",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Your Own Google Cloud Project (Vertex)</span>"
+    ]
+  },
+  {
+    "objectID": "content/vertex.html#check-that-it-works",
+    "href": "content/vertex.html#check-that-it-works",
+    "title": "Using Your Own Google Cloud Project (Vertex)",
+    "section": "Check that it works",
+    "text": "Check that it works\nAsk the agent something short, like “reply with just the word hi”. If it answers, your project is working.\n\n\n\n\n\n\n\nWhat you see\nWhat it usually means\n\n\n\n\n“not found” or “does not have access” for a model\nThat model is not turned on in your project, or the region does not have it. Try another model, or ask your project’s administrator.\n\n\n“could not load the default credentials” or another credentials message\nRun gcloud auth application-default login again (Claude Code and OpenCode).\n\n\nClaude Code asks you to log in to Anthropic\nThe environment variables are not set in this terminal. On Windows, open a new PowerShell window after setx.\n\n\nPermission denied on the project\nYour Google account is not a member of the project, or not allowed to use Vertex AI in it. Ask your project’s administrator.\n\n\nThe command is not found right after installing\nOpen a new terminal so it picks up the new install.",
+    "crumbs": [
+      "Reference",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Using Your Own Google Cloud Project (Vertex)</span>"
+    ]
+  },
+  {
     "objectID": "content/troubleshooting.html",
     "href": "content/troubleshooting.html",
     "title": "Troubleshooting",
@@ -739,7 +794,7 @@
     "text": "Setup problems",
     "crumbs": [
       "Reference",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Troubleshooting</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Troubleshooting</span>"
     ]
   },
   {
@@ -750,7 +805,7 @@
     "text": "claude-agent-coders: command not found or agy-agent-coders: command not found\nThe short command names work only in terminals opened after you first ran the launcher script (the scripts add ~/.local/bin to your PATH). Open a new terminal, or use the full paths:\n\nClaude Code: ~/shared/workshop/claude-agent-coders\nAntigravity: ~/shared/agent-coders/agy-agent-coders\n\n\n\n“agent-coders guard: …”\nThe safety guard installed by agy-agent-coders stopped a command. See Guardrails for the full list.\n\nBlocked (git reset --hard, git push --force without lease, git clean -f, rm -r outside your project, pushing to main, deleting a repository): this is intentional. Tell the agent to use a safe alternative, such as git stash, a soft reset, or a branch and a pull request. If you really want one of these, run it yourself in a terminal.\n“needs the user to say yes first” (merging a pull request, deleting a branch, closing an issue, a pull request into someone else’s repository): the agent should tell you what it wants to do and ask. If you agree, say so, and it will run the command again.\n\n\n\nAntigravity prompts for approval on everyday commands\nIf Antigravity prompts you to approve simple commands like ls or quarto, you may have started plain agy instead of the team launcher. Quit and restart with:\nagy-agent-coders\nYou can check what commands are currently allowed to run without asking by running:\nagy-agent-coders --check\n\n\nAntigravity prompts for approval on pip, cp, or rm\nThis is normal and expected. The team launcher whitelists safe, everyday commands (quarto, R, python3, git, directory listing, etc.), but intentionally leaves package installations (pip), file copies, and deletions to require explicit user approval. Review the proposed command and approve it if appropriate.\n\n\n“That workshop code is not right”\nCheck the code with your organizer and try again.\n\n\n“That key was not accepted”\nPaste the whole key, starting with sk-. If it still fails, ask your organizer.\n\n\n“A key for … was already issued”\nYou, or someone using your name, already signed up. Ask your organizer.\n\n\n“All workshop keys are handed out”, “sign-up is closed” or “has ended”\nAsk your organizer.\n\n\n“not set up yet” or “Could not reach the workshop gateway”\nThe gateway is not running. Ask your organizer.\n\n\nI have a key from an earlier workshop\nForget the old key, then start again and enter the new code:\nclaude-agent-coders --reset\nclaude-agent-coders\n\n\nGitHub refuses a push or gh command\n\nToken for one repositoryFull access\n\n\nCheck these before widening the token:\n\nAre you logged in with the token? Run gh auth status. If you are not logged in, or it shows a browser login, run gh auth login again and choose Paste an authentication token.\nIs the remote HTTPS? Run git remote -v. If it starts with git@github.com:, switch it: git remote set-url origin https://github.com/YOUR-USERNAME/my-quarto-book.git.\nIs this repository on the token? At https://github.com/settings/personal-access-tokens, open the token and check that the repository is in its selected repositories, and that Contents (and Pull requests or Issues, if that is what failed) are Read and write.\nHas the token expired? Make a new one with the same settings and log in with it again.\n\ngh repo create does not work with this token, because it cannot create repositories. Create new repositories on GitHub’s website.\n\n\nRun gh auth status to see whether you are logged in. If not, run gh auth login again and choose GitHub.com, HTTPS, Yes (authenticate Git), and Login with a web browser. If gh repo create says the name already exists, pick a different repository name.\n\n\n\n\n\nSandbox fails with agy --sandbox\nDo not use --sandbox. The JupyterHub container environment does not support nested container namespaces.\n\n\nNon-interactive agy -p exits early\nagy -p \"...\" stops immediately at the first command that requires confirmation. For clinic exercises, use interactive mode (agy-agent-coders) instead.",
     "crumbs": [
       "Reference",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Troubleshooting</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Troubleshooting</span>"
     ]
   },
   {
@@ -761,7 +816,7 @@
     "text": "Budget problems\n\n“Budget exceeded”\nYour key has hit its spending limit. Ask the organizer — they can increase it or issue a new key.\n\n\n“Key expired” or “Key blocked”\nThe key’s time limit is up, or it was switched off. Ask the organizer for a new one.\n\n\nHow to check your remaining budget\nclaude-agent-coders --budget\nSpending shows up about a minute after each request.",
     "crumbs": [
       "Reference",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Troubleshooting</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Troubleshooting</span>"
     ]
   },
   {
@@ -772,7 +827,7 @@
     "text": "Agent behavior problems\n\nAgent gives generic answers without reading files\nSome models (especially open models) don’t use file-reading tools reliably. Try:\n\nBeing explicit: “Use the read tool to look at README.md, then answer.”\nSwitching to a Claude model, which handles tool use more reliably.\n\n\n\nAgent seems confused or stuck\nThe conversation may have gotten too long. Run /clear and start fresh. If you have handoff notes in notes/, tell the agent to read those for context.\n\n\nAgent makes changes you didn’t ask for\nReview what the agent is doing before approving. Most tools ask permission before writing files. If it’s going off track, interrupt it and clarify what you actually want.\n\n\nAgent is working in the wrong folder\nAgents work in the folder you start them from. For Antigravity, this folder also defines the boundary that the safety guard protects. Quit (/exit), cd into your repository, and launch the agent again.",
     "crumbs": [
       "Reference",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Troubleshooting</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Troubleshooting</span>"
     ]
   }
 ]
