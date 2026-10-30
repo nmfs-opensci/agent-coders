@@ -304,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In the clinic, the workshop pays for your agent’s model calls. After the clinic, NOAA staff can use the USAI models through <strong>Google Cloud Vertex AI</strong>, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, or Antigravity on your own Linux, Mac, or Windows computer to use your project.</p>
+<p>In the clinic, the workshop pays for your agent’s model calls. After the clinic, NOAA staff can use the USAI models through <strong>Google Cloud Vertex AI</strong>, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, Antigravity, or GitHub Copilot CLI on your own Linux, Mac, or Windows computer to use your project.</p>
 <section id="what-you-need" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-need">What you need</h2>
 <ul>
@@ -312,12 +312,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Permission to install software on your computer.</strong> On a NOAA-managed computer, you may need IT to install these tools for you.</li>
 </ul>
 <p>Which models you get depends on what your project has turned on, not on the tool. If a model is not turned on, the tool will report that the model was “not found”.</p>
+<p>The NOAA USAI catalog includes Google’s Gemini models (for example <code>gemini-3.8-flash</code> and <code>gemini-3.1-pro-preview</code>), Anthropic’s Claude models (for example <code>claude-opus-5-5</code>, <code>claude-sonnet-5-5</code> and <code>claude-haiku-5-5</code>), xAI’s Grok models, and OpenAI’s <code>gpt-oss-120b-maas</code>. <strong>Each Claude model needs its own approval in your project before you can use it.</strong> If you plan to use Claude, ask for approval of the specific models you want, for example <code>claude-sonnet-5-5</code> and <code>claude-opus-5-5</code>.</p>
 </section>
 <section id="install-your-harness" class="level2">
 <h2 class="anchored" data-anchor-id="install-your-harness">Install your harness</h2>
 <p>The harness is the program you talk to; the model behind it runs on Google Cloud. Install the one you want to use. On Linux and Mac, run the command in a terminal. On Windows, run it in PowerShell.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">OpenCode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Antigravity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">OpenCode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Antigravity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Copilot CLI</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Linux and Mac:</p>
@@ -338,6 +339,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> https<span class="op">://</span>antigravity<span class="op">.</span><span class="fu">google</span><span class="op">/</span><span class="fu">cli</span><span class="op">/</span>install<span class="op">.</span><span class="fu">ps1</span> <span class="op">|</span> <span class="fu">iex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The command it installs is called <code>agy</code>.</p>
 </div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>Linux and Mac:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://gh.io/copilot-install <span class="kw">|</span> <span class="fu">bash</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Windows (PowerShell):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>winget install GitHub<span class="op">.</span><span class="fu">Copilot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Other ways to install are in the <a href="https://docs.github.com/copilot/how-tos/copilot-cli">Copilot CLI documentation</a>. With Vertex you do not need a GitHub Copilot subscription.</p>
+</div>
 </div>
 </div>
 <p>Close the terminal and open a new one, so it finds the newly installed command.</p>
@@ -345,59 +353,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tell-your-harness-to-use-vertex" class="level2">
 <h2 class="anchored" data-anchor-id="tell-your-harness-to-use-vertex">Tell your harness to use Vertex</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">OpenCode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Antigravity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Claude Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">OpenCode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Antigravity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Copilot CLI</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p><strong>1. Sign in to Google Cloud.</strong> Claude Code uses your Google login through the Google Cloud CLI (<code>gcloud</code>). <a href="https://cloud.google.com/sdk/docs/install">Install the Google Cloud CLI</a>, then run this once:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A browser opens. Sign in with your NOAA Google account.</p>
 <p><strong>2. Set three environment variables.</strong> Replace <code>YOUR_PROJECT_ID</code> with your project ID.</p>
 <p>Linux and Mac:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLAUDE_CODE_USE_VERTEX</span><span class="op">=</span>1</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLOUD_ML_REGION</span><span class="op">=</span>global</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_VERTEX_PROJECT_ID</span><span class="op">=</span>YOUR_PROJECT_ID</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLAUDE_CODE_USE_VERTEX</span><span class="op">=</span>1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLOUD_ML_REGION</span><span class="op">=</span>global</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_VERTEX_PROJECT_ID</span><span class="op">=</span>YOUR_PROJECT_ID</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These last only for this terminal. To have them in every new terminal, add the three lines to the end of your shell’s startup file: <code>~/.zshrc</code> on a Mac, <code>~/.bashrc</code> on most Linux systems.</p>
 <p>Windows (PowerShell):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>setx CLAUDE_CODE_USE_VERTEX <span class="dv">1</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">setx</span> CLOUD_ML_REGION global</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>setx ANTHROPIC_VERTEX_PROJECT_ID YOUR_PROJECT_ID</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>setx CLAUDE_CODE_USE_VERTEX <span class="dv">1</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">setx</span> CLOUD_ML_REGION global</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>setx ANTHROPIC_VERTEX_PROJECT_ID YOUR_PROJECT_ID</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>setx</code> saves them for every new PowerShell window, but not the one you typed them in. Open a new window before the next step.</p>
 <p><strong>3. Start Claude Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It should not ask you to log in to an Anthropic account. If it does, the environment variables are not set in this terminal.</p>
 <p><strong>Choosing a model.</strong> Type <code>/model</code> inside Claude Code, or start it with <code>claude --model claude-opus-5-5</code>. Use the model names your project has turned on.</p>
 <p><strong>Region.</strong> <code>global</code> lets Google route each request to wherever there is capacity. If your project requires requests to stay in the United States, use <code>us</code> instead of <code>global</code>.</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p><strong>1. Sign in to Google Cloud.</strong> OpenCode uses your Google login through the Google Cloud CLI (<code>gcloud</code>). <a href="https://cloud.google.com/sdk/docs/install">Install the Google Cloud CLI</a>, then run this once:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A browser opens. Sign in with your NOAA Google account.</p>
 <p><strong>2. Set two environment variables.</strong> Replace <code>YOUR_PROJECT_ID</code> with your project ID.</p>
 <p>Linux and Mac:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GOOGLE_CLOUD_PROJECT</span><span class="op">=</span>YOUR_PROJECT_ID</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">VERTEX_LOCATION</span><span class="op">=</span>global</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GOOGLE_CLOUD_PROJECT</span><span class="op">=</span>YOUR_PROJECT_ID</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">VERTEX_LOCATION</span><span class="op">=</span>global</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These last only for this terminal. To have them in every new terminal, add the two lines to the end of your shell’s startup file: <code>~/.zshrc</code> on a Mac, <code>~/.bashrc</code> on most Linux systems.</p>
 <p>Windows (PowerShell):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>setx GOOGLE_CLOUD_PROJECT YOUR_PROJECT_ID</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>setx VERTEX_LOCATION global</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>setx GOOGLE_CLOUD_PROJECT YOUR_PROJECT_ID</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>setx VERTEX_LOCATION global</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>setx</code> saves them for every new PowerShell window, but not the one you typed them in. Open a new window before going on.</p>
 <p><strong>3. List the Claude models your project has.</strong> OpenCode’s built-in model list adds a suffix (<code>@default</code>) to newer Claude model names, and Vertex rejects it with a “not found” error. Create a file called <code>opencode.json</code> in OpenCode’s settings folder (<code>~/.config/opencode/</code> on Linux and Mac, <code>%USERPROFILE%\.config\opencode\</code> on Windows) with the models your project has turned on, for example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"$schema"</span><span class="fu">:</span> <span class="st">"https://opencode.ai/config.json"</span><span class="fu">,</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"google-vertex-anthropic"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"models"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"claude-opus-5-5"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Claude Opus 5.5"</span> <span class="fu">}</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"$schema"</span><span class="fu">:</span> <span class="st">"https://opencode.ai/config.json"</span><span class="fu">,</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"provider"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"google-vertex-anthropic"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"models"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"claude-opus-5-5"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Claude Opus 5.5"</span> <span class="fu">}</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>4. Start OpenCode</strong> with one of those models:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span> <span class="at">-m</span> google-vertex-anthropic/claude-opus-5-5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">opencode</span> <span class="at">-m</span> google-vertex-anthropic/claude-opus-5-5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Antigravity does not use environment variables or <code>gcloud</code> for this. You give it your project when you sign in. Start it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">agy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">agy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol type="1">
 <li>When asked to <strong>“Select login method”</strong>, choose <strong>“Continue with Google Cloud”</strong>.</li>
 <li>A browser opens (or the terminal shows a link to open). Sign in with your NOAA Google account and allow access. If the terminal asks for a code, copy it from the browser and paste it in.</li>
@@ -406,6 +414,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>When asked to accept a license, accept <strong>“Agent Platform”</strong>.</li>
 </ol>
 <p>To switch to a different project later, type <code>/logout</code> inside Antigravity, start it again, and sign in with the other project ID.</p>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>Copilot CLI can use the <strong>Gemini</strong> and <strong>gpt-oss</strong> models in your project, but <strong>not Claude</strong>. It talks to Vertex through Vertex’s OpenAI-style connection, and Vertex does not offer Claude that way. For Claude, use Claude Code or OpenCode.</p>
+<p><strong>1. Sign in to Google Cloud.</strong> Copilot CLI uses your Google login through the Google Cloud CLI (<code>gcloud</code>). <a href="https://cloud.google.com/sdk/docs/install">Install the Google Cloud CLI</a>, then run this once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A browser opens. Sign in with your NOAA Google account.</p>
+<p><strong>2. Set four environment variables.</strong> Replace <code>YOUR_PROJECT_ID</code> with your project ID. The third one tells Copilot CLI to ask <code>gcloud</code> for a fresh sign-in token for each request; Google’s tokens expire after an hour, so a token pasted in once would stop working.</p>
+<p>Linux and Mac:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">COPILOT_PROVIDER_TYPE</span><span class="op">=</span>openai</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">COPILOT_PROVIDER_BASE_URL</span><span class="op">=</span><span class="st">"https://aiplatform.googleapis.com/v1/projects/YOUR_PROJECT_ID/locations/global/endpoints/openapi"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">COPILOT_PROVIDER_API_KEY_COMMAND</span><span class="op">=</span><span class="st">"gcloud auth application-default print-access-token"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">COPILOT_MODEL</span><span class="op">=</span>google/gemini-3.1-pro-preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These last only for this terminal. To have them in every new terminal, add the four lines to the end of your shell’s startup file: <code>~/.zshrc</code> on a Mac, <code>~/.bashrc</code> on most Linux systems.</p>
+<p>Windows (PowerShell):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>setx COPILOT_PROVIDER_TYPE openai</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>setx COPILOT_PROVIDER_BASE_URL <span class="st">"https://aiplatform.googleapis.com/v1/projects/YOUR_PROJECT_ID/locations/global/endpoints/openapi"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>setx COPILOT_PROVIDER_API_KEY_COMMAND <span class="st">"gcloud auth application-default print-access-token"</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>setx COPILOT_MODEL google<span class="op">/</span>gemini-3<span class="op">.</span><span class="dv">1</span><span class="op">-</span>pro-preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>setx</code> saves them for every new PowerShell window, but not the one you typed them in. Open a new window before going on.</p>
+<p><strong>3. Start Copilot CLI:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">copilot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It should not ask you to log in to GitHub. If it does, the environment variables are not set in this terminal.</p>
+<p><strong>Choosing a model.</strong> Change <code>COPILOT_MODEL</code> and start Copilot CLI again. Model names start with who makes them: <code>google/gemini-3.8-flash</code> (faster and cheaper), <code>google/gemini-3.1-pro-preview</code>, or <code>openai/gpt-oss-120b-maas</code>.</p>
 </div>
 </div>
 </div>
@@ -427,21 +458,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>“not found” or “does not have access” for a model</td>
-<td>That model is not turned on in your project, or the region does not have it. Try another model, or ask your project’s administrator.</td>
+<td>That model is not turned on in your project, or the region does not have it. For Claude, each model needs its own approval. Try another model, or ask your project’s administrator.</td>
 </tr>
 <tr class="even">
-<td>“could not load the default credentials” or another credentials message</td>
-<td>Run <code>gcloud auth application-default login</code> again (Claude Code and OpenCode).</td>
+<td>Copilot CLI says a Claude model is “not servable”</td>
+<td>Copilot CLI cannot use Claude on Vertex. Use a Gemini model, or use Claude Code or OpenCode for Claude.</td>
 </tr>
 <tr class="odd">
-<td>Claude Code asks you to log in to Anthropic</td>
-<td>The environment variables are not set in this terminal. On Windows, open a new PowerShell window after <code>setx</code>.</td>
+<td>“could not load the default credentials” or another credentials message</td>
+<td>Run <code>gcloud auth application-default login</code> again (Claude Code, OpenCode and Copilot CLI).</td>
 </tr>
 <tr class="even">
+<td>Claude Code asks you to log in to Anthropic, or Copilot CLI to GitHub</td>
+<td>The environment variables are not set in this terminal. On Windows, open a new PowerShell window after <code>setx</code>.</td>
+</tr>
+<tr class="odd">
 <td>Permission denied on the project</td>
 <td>Your Google account is not a member of the project, or not allowed to use Vertex AI in it. Ask your project’s administrator.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>The command is not found right after installing</td>
 <td>Open a new terminal so it picks up the new install.</td>
 </tr>
