@@ -1,6 +1,13 @@
-# Handoff — 2026-10-13
+# Handoff — 2026-10-30
 
-## Latest (2026-10-13): Pages aligned with Eli's streamlined Setup (PR #22, merged)
+## Latest (2026-10-30): Vertex page for your own computer (PRs #24, #25, merged)
+
+- New Reference chapter `content/vertex.qmd`, "Using Your Own Google Cloud Project (Vertex)". It covers Claude Code, OpenCode, Antigravity and Copilot CLI on a **generic Linux/Mac/Windows computer**, not the hub, with no launchers (Eli's choice). Sections: install your harness, then tell it to use Vertex, one tab per harness.
+- What looks odd but is deliberate: OpenCode needs a model list in `opencode.json` (its `@default` IDs 404 on Vertex). Antigravity's tab is sign-in steps, not env vars (it ignores them). Copilot CLI is Gemini/gpt-oss only (Vertex won't serve Claude to it).
+- Each Claude model needs its own approval in a GCP project. Eli approved only the 5.5 Haiku/Sonnet/Opus, so other Claude IDs 404 on her project.
+- Mac and Windows steps are untested. Details: `claude/notes/vertex-page.md`.
+
+## Earlier (2026-10-13): Pages aligned with Eli's streamlined Setup (PR #22, merged)
 
 - Eli cut Setup down herself (commits `3880dac`, `601940b`): the Claude key now comes from `~/shared/workshop/agentcoders-keys.md`, and **GitHub Access moved into Setup** with three choices (No access / Token for one repository / Full access). Activity 1 now links there instead of repeating it.
 - **One clear phrase and one handoff file across the guide:** "I am about to clear" (Skills 100 also accepts "Get ready to clear") and a single rolling `notes/handoff.md` plus topic notes. Skills 100, 101, How-to and Activity 1 all follow this; keep new pages consistent.
@@ -49,6 +56,7 @@ First draft of the Agent Coders Clinic participant guide — a Quarto book with 
 10. **Skills 103: Checking the Agent's Work** (`content/skills-103.qmd`) — verification via domain knowledge, real data, breaking things
 11. **Tool Comparison** (`content/tool-comparison.qmd`)
 12. **Troubleshooting** (`content/troubleshooting.qmd`)
+13. **Using Your Own Google Cloud Project (Vertex)** (`content/vertex.qmd`) — after Tool Comparison in Reference; see `claude/notes/vertex-page.md`
 
 ### Key decisions made
 

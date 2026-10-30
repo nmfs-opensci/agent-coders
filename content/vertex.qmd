@@ -2,20 +2,17 @@
 title: Using Your Own Google Cloud Project (Vertex)
 ---
 
-In the clinic, the workshop pays for your agent's model calls. After the clinic, NOAA staff can use the USAI models through **Google Cloud Vertex AI**, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, Antigravity, or GitHub Copilot CLI on your own Linux, Mac, or Windows computer to use your project.
+This page shows how to set up agentic harnesses (such as Claude Code, OpenCode, Antigravity, or GitHub Copilot CLI) to use **Google Cloud Vertex AI** billed to a Google Cloud project. This page shows how to set things up on Linux, Mac, or Windows computers.
 
 ## What you need
 
-- **A Google Cloud project with Vertex AI and the models you want turned on.** At NOAA this comes through the USAI program. You need the **project ID**, which looks like `my-project-123456` (not the display name).
-- **Permission to install software on your computer.** On a NOAA-managed computer, you may need IT to install these tools for you.
+- **A Google Cloud project with Vertex AI and the models you want turned on.** You will need the GCP **project ID**, which looks like `ggn-org-proj-username`. Which models you get depends on what your project has turned on, not on the harness. If a model is not turned on, the harness will report that the model was "not found". You will need to look at the Vertex page `https://console.cloud.google.com/agent-platform/model-garden` to see what models you have enabled.
 
-Which models you get depends on what your project has turned on, not on the tool. If a model is not turned on, the tool will report that the model was "not found".
-
-The NOAA USAI catalog includes Google's Gemini models (for example `gemini-3.8-flash` and `gemini-3.1-pro-preview`), Anthropic's Claude models (for example `claude-opus-5-5`, `claude-sonnet-5-5` and `claude-haiku-5-5`), xAI's Grok models, and OpenAI's `gpt-oss-120b-maas`. **Each Claude model needs its own approval in your project before you can use it.** If you plan to use Claude, ask for approval of the specific models you want, for example `claude-sonnet-5-5` and `claude-opus-5-5`.
+**Note Claude models needs its own manual approval in your project before you can use it.** If you plan to use Claude, go onto the console (line above) and click the "Enable" button of the specific models you want, for example `claude-sonnet-5-5` and `claude-opus-5-5`.
 
 ## Install your harness
 
-The harness is the program you talk to; the model behind it runs on Google Cloud. Install the one you want to use. On Linux and Mac, run the command in a terminal. On Windows, run it in PowerShell.
+The harness is the program you talk to and that coordinates your requests; the model behind it runs on Google Cloud. Install the one you want to use. On Linux and Mac, run the command in a terminal. On Windows, run it in PowerShell.
 
 ::: {.panel-tabset}
 
@@ -83,6 +80,8 @@ Close the terminal and open a new one, so it finds the newly installed command.
 
 ## Tell your harness to use Vertex
 
+In the instuctions, "YOUR_PROJECT_ID" refers to that project code that looks like `ggn-org-proj-username`.
+
 ::: {.panel-tabset}
 
 ### Claude Code
@@ -93,7 +92,7 @@ Close the terminal and open a new one, so it finds the newly installed command.
 gcloud auth application-default login
 ```
 
-A browser opens. Sign in with your NOAA Google account.
+A browser opens. Sign in with your Google account.
 
 **2. Set three environment variables.** Replace `YOUR_PROJECT_ID` with your project ID.
 
@@ -137,7 +136,7 @@ It should not ask you to log in to an Anthropic account. If it does, the environ
 gcloud auth application-default login
 ```
 
-A browser opens. Sign in with your NOAA Google account.
+A browser opens. Sign in with your Google account.
 
 **2. Set two environment variables.** Replace `YOUR_PROJECT_ID` with your project ID.
 
@@ -189,7 +188,7 @@ agy
 ```
 
 1. When asked to **"Select login method"**, choose **"Continue with Google Cloud"**.
-2. A browser opens (or the terminal shows a link to open). Sign in with your NOAA Google account and allow access. If the terminal asks for a code, copy it from the browser and paste it in.
+2. A browser opens (or the terminal shows a link to open). Sign in with your Google account and allow access. If the terminal asks for a code, copy it from the browser and paste it in.
 3. It may say you have no license. That is expected: your project pays as you go.
 4. When asked for your **Google Cloud project**, enter your project ID.
 5. When asked to accept a license, accept **"Agent Platform"**.
@@ -206,7 +205,7 @@ Copilot CLI can use the **Gemini** and **gpt-oss** models in your project, but *
 gcloud auth application-default login
 ```
 
-A browser opens. Sign in with your NOAA Google account.
+A browser opens. Sign in with your Google account.
 
 **2. Set four environment variables.** Replace `YOUR_PROJECT_ID` with your project ID. The third one tells Copilot CLI to ask `gcloud` for a fresh sign-in token for each request; Google's tokens expire after an hour, so a token pasted in once would stop working.
 
