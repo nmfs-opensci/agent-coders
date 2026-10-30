@@ -2,7 +2,7 @@
 title: Using Your Own Google Cloud Project (Vertex)
 ---
 
-In the clinic, the workshop pays for your agent's model calls. After the clinic, NOAA staff can use the USAI models through **Google Cloud Vertex AI**, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, or Antigravity on your own Linux, Mac, or Windows computer to use your project.
+In the clinic, the workshop pays for your agent's model calls. After the clinic, NOAA staff can use the USAI models through **Google Cloud Vertex AI**, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, Antigravity, or GitHub Copilot CLI on your own Linux, Mac, or Windows computer to use your project.
 
 ## What you need
 
@@ -10,6 +10,8 @@ In the clinic, the workshop pays for your agent's model calls. After the clinic,
 - **Permission to install software on your computer.** On a NOAA-managed computer, you may need IT to install these tools for you.
 
 Which models you get depends on what your project has turned on, not on the tool. If a model is not turned on, the tool will report that the model was "not found".
+
+The NOAA USAI catalog includes Google's Gemini models (for example `gemini-3.8-flash` and `gemini-3.1-pro-preview`), Anthropic's Claude models (for example `claude-opus-5-5`, `claude-sonnet-5-5` and `claude-haiku-5-5`), xAI's Grok models, and OpenAI's `gpt-oss-120b-maas`. **Each Claude model needs its own approval in your project before you can use it.** If you plan to use Claude, ask for approval of the specific models you want, for example `claude-sonnet-5-5` and `claude-opus-5-5`.
 
 ## Install your harness
 
@@ -58,6 +60,22 @@ irm https://antigravity.google/cli/install.ps1 | iex
 ```
 
 The command it installs is called `agy`.
+
+### Copilot CLI
+
+Linux and Mac:
+
+```bash
+curl -fsSL https://gh.io/copilot-install | bash
+```
+
+Windows (PowerShell):
+
+```powershell
+winget install GitHub.Copilot
+```
+
+Other ways to install are in the [Copilot CLI documentation](https://docs.github.com/copilot/how-tos/copilot-cli). With Vertex you do not need a GitHub Copilot subscription.
 
 :::
 
@@ -178,6 +196,52 @@ agy
 
 To switch to a different project later, type `/logout` inside Antigravity, start it again, and sign in with the other project ID.
 
+### Copilot CLI
+
+Copilot CLI can use the **Gemini** and **gpt-oss** models in your project, but **not Claude**. It talks to Vertex through Vertex's OpenAI-style connection, and Vertex does not offer Claude that way. For Claude, use Claude Code or OpenCode.
+
+**1. Sign in to Google Cloud.** Copilot CLI uses your Google login through the Google Cloud CLI (`gcloud`). [Install the Google Cloud CLI](https://cloud.google.com/sdk/docs/install), then run this once:
+
+```bash
+gcloud auth application-default login
+```
+
+A browser opens. Sign in with your NOAA Google account.
+
+**2. Set four environment variables.** Replace `YOUR_PROJECT_ID` with your project ID. The third one tells Copilot CLI to ask `gcloud` for a fresh sign-in token for each request; Google's tokens expire after an hour, so a token pasted in once would stop working.
+
+Linux and Mac:
+
+```bash
+export COPILOT_PROVIDER_TYPE=openai
+export COPILOT_PROVIDER_BASE_URL="https://aiplatform.googleapis.com/v1/projects/YOUR_PROJECT_ID/locations/global/endpoints/openapi"
+export COPILOT_PROVIDER_API_KEY_COMMAND="gcloud auth application-default print-access-token"
+export COPILOT_MODEL=google/gemini-3.1-pro-preview
+```
+
+These last only for this terminal. To have them in every new terminal, add the four lines to the end of your shell's startup file: `~/.zshrc` on a Mac, `~/.bashrc` on most Linux systems.
+
+Windows (PowerShell):
+
+```powershell
+setx COPILOT_PROVIDER_TYPE openai
+setx COPILOT_PROVIDER_BASE_URL "https://aiplatform.googleapis.com/v1/projects/YOUR_PROJECT_ID/locations/global/endpoints/openapi"
+setx COPILOT_PROVIDER_API_KEY_COMMAND "gcloud auth application-default print-access-token"
+setx COPILOT_MODEL google/gemini-3.1-pro-preview
+```
+
+`setx` saves them for every new PowerShell window, but not the one you typed them in. Open a new window before going on.
+
+**3. Start Copilot CLI:**
+
+```bash
+copilot
+```
+
+It should not ask you to log in to GitHub. If it does, the environment variables are not set in this terminal.
+
+**Choosing a model.** Change `COPILOT_MODEL` and start Copilot CLI again. Model names start with who makes them: `google/gemini-3.8-flash` (faster and cheaper), `google/gemini-3.1-pro-preview`, or `openai/gpt-oss-120b-maas`.
+
 :::
 
 ## Check that it works
@@ -186,8 +250,9 @@ Ask the agent something short, like "reply with just the word hi". If it answers
 
 | What you see | What it usually means |
 |---|---|
-| "not found" or "does not have access" for a model | That model is not turned on in your project, or the region does not have it. Try another model, or ask your project's administrator. |
-| "could not load the default credentials" or another credentials message | Run `gcloud auth application-default login` again (Claude Code and OpenCode). |
-| Claude Code asks you to log in to Anthropic | The environment variables are not set in this terminal. On Windows, open a new PowerShell window after `setx`. |
+| "not found" or "does not have access" for a model | That model is not turned on in your project, or the region does not have it. For Claude, each model needs its own approval. Try another model, or ask your project's administrator. |
+| Copilot CLI says a Claude model is "not servable" | Copilot CLI cannot use Claude on Vertex. Use a Gemini model, or use Claude Code or OpenCode for Claude. |
+| "could not load the default credentials" or another credentials message | Run `gcloud auth application-default login` again (Claude Code, OpenCode and Copilot CLI). |
+| Claude Code asks you to log in to Anthropic, or Copilot CLI to GitHub | The environment variables are not set in this terminal. On Windows, open a new PowerShell window after `setx`. |
 | Permission denied on the project | Your Google account is not a member of the project, or not allowed to use Vertex AI in it. Ask your project's administrator. |
 | The command is not found right after installing | Open a new terminal so it picks up the new install. |
