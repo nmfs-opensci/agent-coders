@@ -1,0 +1,193 @@
+---
+title: Using Your Own Google Cloud Project (Vertex)
+---
+
+In the clinic, the workshop pays for your agent's model calls. After the clinic, NOAA staff can use the USAI models through **Google Cloud Vertex AI**, billed to a Google Cloud project. This page shows how to set up Claude Code, OpenCode, or Antigravity on your own Linux, Mac, or Windows computer to use your project.
+
+## What you need
+
+- **A Google Cloud project with Vertex AI and the models you want turned on.** At NOAA this comes through the USAI program. You need the **project ID**, which looks like `my-project-123456` (not the display name).
+- **Permission to install software on your computer.** On a NOAA-managed computer, you may need IT to install these tools for you.
+
+Which models you get depends on what your project has turned on, not on the tool. If a model is not turned on, the tool will report that the model was "not found".
+
+## Install your harness
+
+The harness is the program you talk to; the model behind it runs on Google Cloud. Install the one you want to use. On Linux and Mac, run the command in a terminal. On Windows, run it in PowerShell.
+
+::: {.panel-tabset}
+
+### Claude Code
+
+Linux and Mac:
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+Windows (PowerShell):
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+Claude Code on Windows also needs [Git for Windows](https://git-scm.com/downloads/win). Other ways to install are in the [Claude Code documentation](https://docs.claude.com/en/docs/claude-code/setup).
+
+### OpenCode
+
+Linux and Mac:
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+Windows: run the same command in Git Bash, or see the other ways to install in the [OpenCode documentation](https://opencode.ai/docs/).
+
+### Antigravity
+
+Linux and Mac:
+
+```bash
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+```
+
+Windows (PowerShell):
+
+```powershell
+irm https://antigravity.google/cli/install.ps1 | iex
+```
+
+The command it installs is called `agy`.
+
+:::
+
+Close the terminal and open a new one, so it finds the newly installed command.
+
+## Tell your harness to use Vertex
+
+::: {.panel-tabset}
+
+### Claude Code
+
+**1. Sign in to Google Cloud.** Claude Code uses your Google login through the Google Cloud CLI (`gcloud`). [Install the Google Cloud CLI](https://cloud.google.com/sdk/docs/install), then run this once:
+
+```bash
+gcloud auth application-default login
+```
+
+A browser opens. Sign in with your NOAA Google account.
+
+**2. Set three environment variables.** Replace `YOUR_PROJECT_ID` with your project ID.
+
+Linux and Mac:
+
+```bash
+export CLAUDE_CODE_USE_VERTEX=1
+export CLOUD_ML_REGION=global
+export ANTHROPIC_VERTEX_PROJECT_ID=YOUR_PROJECT_ID
+```
+
+These last only for this terminal. To have them in every new terminal, add the three lines to the end of your shell's startup file: `~/.zshrc` on a Mac, `~/.bashrc` on most Linux systems.
+
+Windows (PowerShell):
+
+```powershell
+setx CLAUDE_CODE_USE_VERTEX 1
+setx CLOUD_ML_REGION global
+setx ANTHROPIC_VERTEX_PROJECT_ID YOUR_PROJECT_ID
+```
+
+`setx` saves them for every new PowerShell window, but not the one you typed them in. Open a new window before the next step.
+
+**3. Start Claude Code:**
+
+```bash
+claude
+```
+
+It should not ask you to log in to an Anthropic account. If it does, the environment variables are not set in this terminal.
+
+**Choosing a model.** Type `/model` inside Claude Code, or start it with `claude --model claude-opus-5-5`. Use the model names your project has turned on.
+
+**Region.** `global` lets Google route each request to wherever there is capacity. If your project requires requests to stay in the United States, use `us` instead of `global`.
+
+### OpenCode
+
+**1. Sign in to Google Cloud.** OpenCode uses your Google login through the Google Cloud CLI (`gcloud`). [Install the Google Cloud CLI](https://cloud.google.com/sdk/docs/install), then run this once:
+
+```bash
+gcloud auth application-default login
+```
+
+A browser opens. Sign in with your NOAA Google account.
+
+**2. Set two environment variables.** Replace `YOUR_PROJECT_ID` with your project ID.
+
+Linux and Mac:
+
+```bash
+export GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
+export VERTEX_LOCATION=global
+```
+
+These last only for this terminal. To have them in every new terminal, add the two lines to the end of your shell's startup file: `~/.zshrc` on a Mac, `~/.bashrc` on most Linux systems.
+
+Windows (PowerShell):
+
+```powershell
+setx GOOGLE_CLOUD_PROJECT YOUR_PROJECT_ID
+setx VERTEX_LOCATION global
+```
+
+`setx` saves them for every new PowerShell window, but not the one you typed them in. Open a new window before going on.
+
+**3. List the Claude models your project has.** OpenCode's built-in model list adds a suffix (`@default`) to newer Claude model names, and Vertex rejects it with a "not found" error. Create a file called `opencode.json` in OpenCode's settings folder (`~/.config/opencode/` on Linux and Mac, `%USERPROFILE%\.config\opencode\` on Windows) with the models your project has turned on, for example:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "google-vertex-anthropic": {
+      "models": {
+        "claude-opus-5-5": { "name": "Claude Opus 5.5" }
+      }
+    }
+  }
+}
+```
+
+**4. Start OpenCode** with one of those models:
+
+```bash
+opencode -m google-vertex-anthropic/claude-opus-5-5
+```
+
+### Antigravity
+
+Antigravity does not use environment variables or `gcloud` for this. You give it your project when you sign in. Start it:
+
+```bash
+agy
+```
+
+1. When asked to **"Select login method"**, choose **"Continue with Google Cloud"**.
+2. A browser opens (or the terminal shows a link to open). Sign in with your NOAA Google account and allow access. If the terminal asks for a code, copy it from the browser and paste it in.
+3. It may say you have no license. That is expected: your project pays as you go.
+4. When asked for your **Google Cloud project**, enter your project ID.
+5. When asked to accept a license, accept **"Agent Platform"**.
+
+To switch to a different project later, type `/logout` inside Antigravity, start it again, and sign in with the other project ID.
+
+:::
+
+## Check that it works
+
+Ask the agent something short, like "reply with just the word hi". If it answers, your project is working.
+
+| What you see | What it usually means |
+|---|---|
+| "not found" or "does not have access" for a model | That model is not turned on in your project, or the region does not have it. Try another model, or ask your project's administrator. |
+| "could not load the default credentials" or another credentials message | Run `gcloud auth application-default login` again (Claude Code and OpenCode). |
+| Claude Code asks you to log in to Anthropic | The environment variables are not set in this terminal. On Windows, open a new PowerShell window after `setx`. |
+| Permission denied on the project | Your Google account is not a member of the project, or not allowed to use Vertex AI in it. Ask your project's administrator. |
+| The command is not found right after installing | Open a new terminal so it picks up the new install. |

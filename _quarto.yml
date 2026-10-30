@@ -30,6 +30,7 @@ book:
     - part: "Reference"
       chapters:
         - content/tool-comparison.qmd
+        - content/vertex.qmd
         - content/troubleshooting.qmd
 
   page-footer:
